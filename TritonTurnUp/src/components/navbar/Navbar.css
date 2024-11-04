@@ -1,0 +1,108 @@
+/*----------------------navbar----------------------*/
+nav{
+    width: 100%;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+nav .search-bar input{
+    float: center;
+    border: none;
+    appearance: none;
+    background: #efe8ef;
+    padding: 10px;
+    border-radius: 0.5em;
+    width: 40vw;
+}
+nav ul{
+    display: flex;
+}
+nav ul li{
+    list-style: none;
+}
+nav ul .login-button a{
+    text-decoration: none;
+    background-color: #efe8ef;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    color: black;
+    padding: 0.5em;
+    margin-left: 0.5em;
+    border-radius: 0.5em;
+}
+nav ul .signup-button a{
+    text-decoration: none;
+    background-color: #6b6b6b;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #6b6b6b;
+    color: #efe8ef;
+    padding: 0.5em;
+    margin-left: 0.5em;
+    border-radius: 0.5em;
+}
+nav ul li a{
+    display: block;
+    text-decoration: none;
+}
+nav ul .login-button a:hover{
+    background-color: #e2cde2;
+}
+nav ul .signup-button a:hover{
+    background-color: #e2cde2;
+    color: black;
+}
+
+/*--------------------burger menu--------------------*/
+.burger-menu{
+    padding: 5px;
+    width: 2.8em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.burger-bar{
+    width: 2.5em;
+    height: 0.3em;
+    background-color: black;
+    border-radius: 0.5em;
+}
+.menu{
+    width: 15em;
+    height: 100vh;
+    background-color: #6b6b6b;
+    position: absolute;
+}
+.menu ul{
+    flex-direction: column;
+    width: 100%;
+}
+.menu ul li{
+    list-style: none;
+    width: 100%;
+    text-align: left;
+}
+.menu ul li a{
+    font-size: x-large;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 0.5em;
+    margin: 0.5em;
+    margin-bottom: 0;
+    border-radius: 0.5em;
+}
+.menu ul li a:hover{
+    background-color: #e2cde2;
+}
+.hidden{
+    display: none;
+}
+.visible{
+    display: inherit;
+}
