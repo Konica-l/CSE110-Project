@@ -49,13 +49,6 @@
 
 .flex_label_item {
 
-    max-width: 5vw;
-    padding: 1px;
-
-}
-
-.label {
-
     background-color: #d4d1d1;
     color: #000;
     font-size: 20px;
@@ -91,6 +84,8 @@ img {
 
 .flex_button_bar {
 
+    height: 100%;
+    width: 100%;
     flex-direction: row;
     display: flex; 
     justify-content: center;
@@ -98,7 +93,7 @@ img {
 
 }
 
-.button {
+.flex_button {
 
     background-color: #ffffff; /* Example background color */
     color: white;          /* Button text color */

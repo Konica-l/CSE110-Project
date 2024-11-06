@@ -25,19 +25,11 @@ function Event() {
                 <div className = "grid_element">
 
                     <div className="flex_label_list">
-                        
-                        <div className = "flex_label_item">
-                            <div className = "label">Label</div>
-                        </div>
-                        <div className = "flex_label_item">
-                            <div className = "label">Label</div>
-                        </div>
-                        <div className = "flex_label_item">
-                            <div className = "label">Label</div>
-                        </div>
-                        <div className = "flex_label_item">
-                            <div className = "label">Label</div>
-                        </div>
+
+                        <div className = "flex_label_item"> Label </div>
+                        <div className = "flex_label_item"> Label </div>
+                        <div className = "flex_label_item"> Label </div>
+                        <div className = "flex_label_item"> Label </div>
 
                     </div>
 
@@ -63,23 +55,17 @@ function Event() {
                 
                     <div className = "flex_button_bar">
 
-                        <div className = "button">
-                            <button class="button"> 
-                                <img src={rejectImage}/>
-                            </button>
-                        </div>
+                        <button class="flex_button"> 
+                            <img src={rejectImage}/>
+                        </button>
 
-                        <div className = "button">
-                            <button class="button"> 
-                                <img src={linkImage}/>
-                            </button>
-                        </div>
+                        <button className = "flex_button"> 
+                            <img src={linkImage}/>
+                        </button>
 
-                        <div className = "button">
-                            <button class="button"> 
-                                <img src={acceptImage}/>
-                            </button>
-                        </div>
+                        <button className = "flex_button">
+                            <img src={acceptImage}/>
+                        </button>
 
                     </div>
 
