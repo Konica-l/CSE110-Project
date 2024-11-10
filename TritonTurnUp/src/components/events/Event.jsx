@@ -59,9 +59,6 @@ function Event() {
                             <img src={rejectImage}/>
                         </button>
 
-                        <button className = "flex_button"> 
-                            <img src={linkImage}/>
-                        </button>
 
                         <button className = "flex_button">
                             <img src={acceptImage}/>

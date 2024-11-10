@@ -79,22 +79,22 @@ img {
 
     height: 100%;
     width: auto;
+    margin-left: 35%;
 
 }
 
 .flex_button_bar {
 
-    height: 100%;
-    width: 100%;
     flex-direction: row;
     display: flex; 
     justify-content: center;
-    gap: 5vw;
 
 }
 
 .flex_button {
 
+    height: 100%;
+    width: 100%;
     background-color: #ffffff; /* Example background color */
     color: white;          /* Button text color */
     border: none;          /* Remove default border */
