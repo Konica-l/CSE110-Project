@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import './Event.css'
 import rejectImage from '../../assets/X circle.png';
-import linkImage from '../../assets/Link.png';
+import linkImage from '../../assets/External link.png';
 import acceptImage from '../../assets/Check square.png';
 
 function Event() {
@@ -59,7 +59,7 @@ function Event() {
                             <img src={rejectImage}/>
                         </button>
 
-                        <button className = "flex_button"> 
+                        <button class="flex_button"> 
                             <img src={linkImage}/>
                         </button>
 
