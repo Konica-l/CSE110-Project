@@ -8,6 +8,7 @@ import Calendar from "./components/pages/Calendar"
 import NoPage from './components/pages/NoPage'
 import Login from './components/pages/Login'
 import SignUp from './components/pages/SignUp'
+import Helper from './components/pages/Helper'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/home" element={<Home />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/calendar" element={<Calendar />}></Route>
+          <Route path="/helper" element={<Helper />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
           <Route path="*" element={<NoPage />}></Route>

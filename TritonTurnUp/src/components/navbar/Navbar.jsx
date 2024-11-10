@@ -44,6 +44,7 @@ const Navbar = () => {
                 <li><a href="/home">Home</a></li>
                 <li><a href="/profile">Profile</a></li>
                 <li><a href="/calendar">Calendar</a></li>
+                <li><a href="/helper">Helper</a></li>
             </ul>
         </div>
     </>
