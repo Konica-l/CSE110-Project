@@ -1,14 +1,20 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
-import Event from '../events/Event';
+import Event from '../carousel/Event'
+import Data from '../../event_list.json'
 
 
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <h1>Home</h1>
-      <Event />
+      {
+        Data.map( data => {
+          return(
+            <Event title={data.title} date={data.date_time} text={data.preview} img={data.image} />
+          )
+        })
+      }
     </div>
   )
 }
