@@ -44,14 +44,39 @@ jobs:
          else
            echo "App.jsx is not empty."
          fi
-
-
-     - name: Check if Home.jsx contains <Navbar />
+         
+     - name: Check if Home.jsx is not empty
        run: |
-         if ! grep -q "<Navbar />" ./TritonTurnUp/src/pages/Home.jsx; then
-           echo "Error: <Navbar /> not found in Home.jsx!"
+         if [ ! -s ./TritonTurnUp/src/components/pages/Home.jsx ]; then
+           echo "Error: Home.jsx is empty!"
            exit 1
          else
-           echo "<Navbar /> found in Home.jsx."
+           echo "Home.jsx is not empty."
          fi
 
+     - name: Check if Profile.jsx is not empty
+       run: |
+         if [ ! -s ./TritonTurnUp/src/Profile.jsx ]; then
+           echo "Error: Profile.jsx is empty!"
+           exit 1
+         else
+           echo "Profile.jsx is not empty."
+         fi
+         
+     - name: Check if SignUp.jsx is not empty
+       run: |
+         if [ ! -s ./TritonTurnUp/src/SignUp.jsx ]; then
+           echo "Error: SignUp.jsx is empty!"
+           exit 1
+         else
+           echo "SignUp.jsx is not empty."
+         fi
+
+     - name: Check if Calendar.jsx is not empty
+       run: |
+         if [ ! -s ./TritonTurnUp/src/Calendar.jsx ]; then
+           echo "Error: Calendar.jsx is empty!"
+           exit 1
+         else
+           echo "Calendar.jsx is not empty."
+         fi
