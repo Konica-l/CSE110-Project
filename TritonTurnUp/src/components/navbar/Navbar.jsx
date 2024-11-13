@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <>
         <nav>
-            <div className='burger-menu' onClick={updateMenu}>
+            <div className='burger-menu' data-testid="open-menu" onClick={updateMenu}>
                 <div className={burger_class}></div>
                 <div className={burger_class}></div>
                 <div className={burger_class}></div>
