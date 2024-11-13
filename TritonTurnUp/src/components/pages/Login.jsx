@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.css';
 import Turnip from '../../assets/Turnip.png';
+import { handleLogin } from '../pages/handleLogin.js';
 
 const Login = () => {
   return (
@@ -12,7 +13,7 @@ const Login = () => {
           You can sign in using your Google account.
         </p>
         <img className="turnip" src={Turnip}/> <br />
-        <button className="google-login-button">Login with Google</button>
+        <button className="google-login-button" onClick={ handleLogin }>Login with Google</button>
       </div>
     </div>
   );
