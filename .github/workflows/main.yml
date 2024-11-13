@@ -12,6 +12,7 @@ jobs: # the things being executed
    steps:
      - uses: actions/checkout@v4 # using version 4 of Actions
      - name: Install Dependencies
+       working-directory: ./TritonTurnUp
        run: npm install
 
      - name: Check if App.jsx is not empty
