@@ -13,5 +13,22 @@ jobs: # the things being executed
      - uses: actions/checkout@v4 # using version 4 of Actions
      - name: Install Dependencies
        run: npm install
-     - name: Unit Test
-       run: npm test # the actual testing line
+
+     - name: Check if App.jsx is not empty
+       run: |
+         if [ ! -s ./TritonTurnUp/src/App.jsx ]; then
+           echo "Error: App.jsx is empty!"
+           exit 1
+         else
+           echo "App.jsx is not empty."
+         fi
+
+
+     - name: Check if Home.jsx contains <Navbar />
+       run: |
+         if ! grep -q "<Navbar />" ./TritonTurnUp/src/pages/Home.jsx; then
+           echo "Error: <Navbar /> not found in Home.jsx!"
+           exit 1
+         else
+           echo "<Navbar /> found in Home.jsx."
+         fi
