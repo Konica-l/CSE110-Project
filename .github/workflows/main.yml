@@ -80,3 +80,6 @@ jobs:
          else
            echo "Calendar.jsx is not empty."
          fi
+
+     - name: Unit Tests
+       run: npm test # the actual testing line
