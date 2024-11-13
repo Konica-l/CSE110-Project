@@ -1,17 +1,57 @@
-name: Unit Tests # name of the test
+# name: Unit Tests # name of the test
+
+# on:
+#  push:
+#    branches: [ StarterCodeDrafts ]  # or 'master' if that's your primary branch name
+#  pull_request:
+#    branches: [ StarterCodeDrafts ] # the Github Action will activate "on" the event that you "push" to the repo
+
+# jobs: # the things being executed
+#  tests: # the name of your status check, will become important when you do branch protection
+#    runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+#    steps:
+#      - uses: actions/checkout@v4 # using version 4 of Actions
+#      - name: Install Dependencies
+#        run: npm install
+#      - name: Unit Test
+#        run: npm test # the actual testing line
+
+name: Commit Tests
 
 on:
  push:
-   branches: [ StarterCodeDrafts ]  # or 'master' if that's your primary branch name
+   branches: [ main ]
  pull_request:
-   branches: [ StarterCodeDrafts ] # the Github Action will activate "on" the event that you "push" to the repo
+   branches: [ main ]
 
-jobs: # the things being executed
- tests: # the name of your status check, will become important when you do branch protection
-   runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+
+jobs:
+ check-files:
+   runs-on: ubuntu-latest
    steps:
-     - uses: actions/checkout@v4 # using version 4 of Actions
+     - name: Checkout repository
+       uses: actions/checkout@v4 # using version 4 of Actions
+      
      - name: Install Dependencies
        run: npm install
-     - name: Unit Test
-       run: npm test # the actual testing line
+
+
+     - name: Check if App.jsx is not empty
+       run: |
+         if [ ! -s ./TritonTurnUp/src/App.jsx ]; then
+           echo "Error: App.jsx is empty!"
+           exit 1
+         else
+           echo "App.jsx is not empty."
+         fi
+
+
+     - name: Check if Home.jsx contains <Navbar />
+       run: |
+         if ! grep -q "<Navbar />" ./TritonTurnUp/src/pages/Home.jsx; then
+           echo "Error: <Navbar /> not found in Home.jsx!"
+           exit 1
+         else
+           echo "<Navbar /> found in Home.jsx."
+         fi
+
