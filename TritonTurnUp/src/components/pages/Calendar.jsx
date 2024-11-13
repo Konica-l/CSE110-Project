@@ -4,9 +4,6 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import './Calendar.css'
 
-
-const datesToAddContentTo = [tomorrow, in3Days, in5Days];
-
 const CalendarConstruct = () => {
 
   function tileContent({ date, view }) {
@@ -19,21 +16,15 @@ const CalendarConstruct = () => {
     }
   }
 
-  const [value,setValue] = useState(new Date());
-
   return (
     <div>
       <Navbar />
       <h1>Calendar</h1>
       <div id = "calendar">
         <Calendar
-            onChange = {onChange}
             minDate = {new Date(2024, 0,1)}
             maxDate = {new Date(2025, 11,1)}
             minDetail = "year"
-            showNeighboringMonth = {false}
-            value={date}
-            tileContent={tileContent}
           />
       </div>
     </div>
