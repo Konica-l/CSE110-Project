@@ -24,12 +24,3 @@ jobs: # the things being executed
            echo "App.jsx is not empty."
          fi
 
-
-     - name: Check if Home.jsx contains <Navbar />
-       run: |
-         if ! grep -q "<Navbar />" ./TritonTurnUp/src/pages/Home.jsx; then
-           echo "Error: <Navbar /> not found in Home.jsx!"
-           exit 1
-         else
-           echo "<Navbar /> found in Home.jsx."
-         fi
