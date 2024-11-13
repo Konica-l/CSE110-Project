@@ -24,7 +24,8 @@ jobs:
     - name: Setup Environment
       working-directory: ./TritonTurnUp
       run: npm install
+    - run: npm install react-calendar
 
     - name: Unit Test
       working-directory: ./TritonTurnUp
-      run: npm run dev
+      run: npm test 
