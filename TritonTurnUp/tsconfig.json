@@ -1,0 +1,22 @@
+// {
+//     "compilerOptions": {
+//       "allowImportingTsExtensions": true,
+//       "noEmit": true,
+//       "module": "Node16",
+//       "moduleResolution": "node16",
+//       "types": ["node"],
+//       // Other compiler options
+//     }
+//   }
+
+{
+  "compilerOptions": {
+    "noEmit": true,                         // Prevent emitting JavaScript files
+    "module": "Node16",                     // Set module system to Node 16
+    "moduleResolution": "node16",           // Use Node 16-style module resolution
+    "types": ["node"],                      // Include Node types
+    "esModuleInterop": true,                // Ensure compatibility with CommonJS and ES Modules
+    "resolveJsonModule": true,              // Allow importing JSON files (optional)
+    "allowSyntheticDefaultImports": true    // Allow default imports from modules without a default export
+  }
+}
