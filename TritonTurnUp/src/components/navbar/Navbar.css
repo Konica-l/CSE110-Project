@@ -1,7 +1,9 @@
 /*----------------------navbar----------------------*/
 nav{
+    position: sticky;
+    top: 0;
     width: 100%;
-    background-color: #d9d9d9;
+    background-color: #cccccc;
     display: flex;
     justify-content: space-between;
     padding: 1em;
@@ -48,10 +50,10 @@ nav ul li a{
     text-decoration: none;
 }
 nav ul .login-button a:hover{
-    background-color: #e2cde2;
+    background-color: #e2c6e2;
 }
 nav ul .signup-button a:hover{
-    background-color: #e2cde2;
+    background-color: #e2c6e2;
     color: black;
 }
 
@@ -72,10 +74,11 @@ nav ul .signup-button a:hover{
     border-radius: 0.5em;
 }
 .menu{
+    position: fixed;
+    top: 69.6px;
     width: 15em;
     height: 100vh;
     background-color: #6b6b6b;
-    position: absolute;
 }
 .menu ul{
     flex-direction: column;
@@ -98,7 +101,7 @@ nav ul .signup-button a:hover{
     border-radius: 0.5em;
 }
 .menu ul li a:hover{
-    background-color: #e2cde2;
+    background-color: #e2c6e2;
 }
 .hidden{
     display: none;
