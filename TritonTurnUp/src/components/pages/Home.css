@@ -1,0 +1,26 @@
+.carousel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 650px;
+}
+.prev, .next {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #cccccc;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.prev:hover, .next:hover{
+    background-color: #e2c6e2;
+}
+.prev:disabled, .next:disabled {
+    background-color: #efe8ef;
+    color: rgb(159, 159, 159);
+    border: none;
+    cursor: not-allowed;
+}
