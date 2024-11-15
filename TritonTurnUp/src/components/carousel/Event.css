@@ -1,6 +1,6 @@
 .event-card{
     place-self: center;
-    margin: 20px;
+    margin-top: 20px;
     background-color: white;
     border: 1px solid black;
     border-radius: 8px;
@@ -45,7 +45,7 @@
         padding-bottom: 1px;
     }
 }
-button{
+.buttons button{
     padding-top: 4px;
     margin-inline: 4px;
     width: 110px;
@@ -53,9 +53,11 @@ button{
     border: 1px solid black;
     border-radius: 4px;
 }
-button img{
+.buttons button img{
+    place-self: center;
     max-height: 30px;
 }
-button:hover{
+.buttons button:hover{
+    cursor: pointer;
     background-color: #e2c6e2;
 }
