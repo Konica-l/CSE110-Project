@@ -1,34 +1,26 @@
 import React, {useState} from 'react'
 import Navbar from '../navbar/Navbar'
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
-import './Calendar.css'
+import {Calendar, momentLocalizer} from 'react-big-calendar'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import moment from 'moment'
 
-const CalendarConstruct = () => {
+const localizer = momentLocalizer(moment)
 
-  function tileContent({ date, view }) {
-    // Add class to tiles in month view only
-    if (view === 'month') {
-      // Check if a date React-Calendar wants to check is on the list of dates to add class to
-      if (datesToAddContentTo.find(dDate => isSameDay(dDate, date))) {
-        return 'My content';
-      }
-    }
-  }
 
-  return (
+const CalendarConstruct = (props) => (
     <div>
       <Navbar />
       <h1>Calendar</h1>
       <div id = "calendar">
         <Calendar
-            minDate = {new Date(2024, 0,1)}
-            maxDate = {new Date(2025, 11,1)}
-            minDetail = "year"
+            localizer = {localizer}
+            //events = {myEventsList}
+            startAccessor= "start"
+            endAccessor= "end"
+            style = {{ height: 800 }}
           />
       </div>
     </div>
-  )
-}
+)
 
 export default CalendarConstruct
