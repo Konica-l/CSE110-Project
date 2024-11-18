@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
+import myEvent from '../myEvent.json'
 
 
 const Calendar = () => {

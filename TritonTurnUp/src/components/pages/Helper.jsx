@@ -15,18 +15,19 @@ const Helper = () => {
   }
 
 export function getEventByID(id) { //returns event 
-  for (var i = 0; i < data.length; i++) {
-    if (data[i].id === id) {
-      return data[i];
-    }
-  } 
+  let obj = data.find(x => x.id === id);
+  if (obj.id === id) {
+    return data[data.indexOf(obj)];
+  }
   return console.error("id does not exist");
 }
 
 export function tagLookUp(tags) {
   const similar = 0;
-  
-  
+  var eventByTag = [];
+  for (var i = 0; i < data.length; i++) {
+    
+  }
 }
 
 
