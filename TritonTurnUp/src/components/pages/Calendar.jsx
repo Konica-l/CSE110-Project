@@ -6,7 +6,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment'
 
 
-
 /*export default function CalendarConstruct({
   localizer = mlocalizer,
   ...props
