@@ -1,9 +1,12 @@
 import Navbar from '../navbar/Navbar'
-import {Calendar, Views, momentLocalizer} from 'react-big-calendar'
-import {useMemo, useState} from 'react'
-import events from 'events'
+import {Calendar, Views, dayjsLocalizer} from 'react-big-calendar'
+import {Fragment, useMemo, useState} from 'react'
+import myEvents from './events'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import moment from 'moment'
+import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(timezone)
+
 
 
 /*export default function CalendarConstruct({
@@ -36,24 +39,42 @@ return (
       </div>
     </div>
 )*/
+const ColoredDateCellWrapper = ({ children }) =>
+  React.cloneElement(React.Children.only(children), {
+    style: {
+      backgroundColor: 'lightblue',
+    },
+  })
 
-const localizer = momentLocalizer(moment)
+const localizer = dayjsLocalizer(dayjs)
 
+export default function Dayjs({ ...props }) {
+  const { components,defaultDate, max } = useMemo(
+    () => ({
+      components: {
+        timeSlotWrapper: ColoredDateCellWrapper,
+      },
+      defaultDate: new Date().toLocaleDateString(),
+      max: dayjs().endOf('day').subtract(1,'hours').toDate(),
+    }),
+    []
+  )
 
-const CalendarConstruct = (props) => (
-    <div>
+  return (
+    <Fragment>
       <Navbar />
-      <h1>Calendar</h1>
-      <div id = "calendar">
+      <div className='height600' {...props}> 
         <Calendar
-            localizer = {localizer}
-            //events = {myEventsList}
-            startAccessor= "start"
-            endAccessor= "end"
-            style = {{ height: 800 }}
-          />
+          components={components}
+          defaultDate={defaultDate}
+          events={myEvents}
+          localizer = {localizer}
+          max={max}
+          showMultiDayTimes
+          style = {{height: 600}}
+          step={60}
+        />
       </div>
-    </div>
-)
-
-export default CalendarConstruct
+    </Fragment>
+  )
+}
