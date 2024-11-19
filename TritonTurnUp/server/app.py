@@ -38,22 +38,33 @@ def get_event(event_id):
     else:
         return jsonify({"error": "Event not found"}), 404
 
-# Fetch JSON list of events for card view
+# Fetch JSON list of events for card view with optional title and tag filters
 @app.route('/event_search', defaults={'title': None}, methods=['GET'])
 @app.route('/event_search/<string:title>', methods=['GET'])
-def search_events_by_title(title):
+def search_events(title):
     db = get_db()
     cursor = db.cursor()
-    
+
+    tag_filter = request.args.get('tag')
+
+    query = "SELECT id, title, image_url, preview, date_time, tags FROM events"
+    conditions = []
+    params = []
+
     if title:
-        query = "SELECT id, title, image_url, preview, date_time, tags FROM events WHERE title LIKE ?"
-        cursor.execute(query, (f"%{title}%",))
-    else:
-        query = "SELECT id, title, image_url, preview, date_time, tags FROM events"
-        cursor.execute(query)
-    
+        conditions.append("(title LIKE ? OR tags LIKE ?)")
+        params.extend([f"%{title}%", f"%{title}%"])
+
+    if tag_filter:
+        conditions.append("tags LIKE ?")
+        params.append(f"%{tag_filter}%")
+
+    if conditions:
+        query += " WHERE " + " AND ".join(conditions)
+
+    cursor.execute(query, tuple(params))
     events = cursor.fetchall()
-    
+
     events_list = [
         {
             "id": event[0],
@@ -61,12 +72,13 @@ def search_events_by_title(title):
             "image": event[2],
             "preview": event[3],
             "date_time": event[4],
-            "tags": event[5]
+            "tags": event[5].split(",") if event[5] else []  # Split tags into a list
         }
         for event in events
     ]
-    
+
     return jsonify(events_list)
+
 
 
 @app.route('/calendar_list/<string:ids>', methods=['GET'])
@@ -76,7 +88,7 @@ def get_calendar_list(ids):
     ids_list = ids.split('+')
     
     placeholders = ','.join('?' for _ in ids_list)
-    query = f"SELECT id, title, date_time FROM events WHERE id IN ({placeholders})"
+    query = f"SELECT id, title, date_time, tags FROM events WHERE id IN ({placeholders})"
     
     cursor.execute(query, ids_list)
     events = cursor.fetchall()
