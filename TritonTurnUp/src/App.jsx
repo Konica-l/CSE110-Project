@@ -8,6 +8,8 @@ import Calendar from "./components/pages/Calendar"
 import NoPage from './components/pages/NoPage'
 import Login from './components/pages/Login'
 import SignUp from './components/pages/SignUp'
+import Search from './components/pages/Search'
+import Event from './components/pages/Event'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/calendar" element={<Calendar />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
+          <Route path="/search" element={<Search />}></Route>
+          <Route path="/event" element={<Event />}></Route>
           <Route path="*" element={<NoPage />}></Route>
         </Routes>
       </BrowserRouter>
