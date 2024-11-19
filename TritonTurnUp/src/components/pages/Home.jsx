@@ -35,7 +35,8 @@ const Home = () => {
           date={Data[currentIndex].date_time} 
           text={Data[currentIndex].preview} 
           img={Data[currentIndex].image} 
-          tags={Data[currentIndex].tags} 
+          tags={Data[currentIndex].tags}
+          notInterested={handleNext} 
         />
 
         <button className='next' onClick={handleNext} disabled={currentIndex === Data.length - 1}>
