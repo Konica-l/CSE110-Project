@@ -42,7 +42,7 @@
     height: auto; /* Maintain aspect ratio */
 }
 
-.google-login-button {
+.google-login-button, .google-logout-button {
   width: 50%;
   padding: 15px;
   margin-top: 25px;
@@ -55,6 +55,6 @@
   transition: background-color 0.3s ease;
 }
 
-.google-login-button:hover {
+.google-login-button:hover, .google-logout-button:hover {
   background-color: #4d286a98; /* Darker blue for hover effect */
 }
