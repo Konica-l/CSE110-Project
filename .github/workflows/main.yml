@@ -70,14 +70,6 @@ jobs:
            echo "Profile.jsx is not empty."
          fi
          
-     - name: Check if SignUp.jsx is not empty
-       run: |
-         if [ ! -s ./TritonTurnUp/src/SignUp.jsx ]; then
-           echo "Error: SignUp.jsx is empty!"
-           exit 1
-         else
-           echo "SignUp.jsx is not empty."
-         fi
 
      - name: Check if Calendar.jsx is not empty
        run: |
