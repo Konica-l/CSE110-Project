@@ -73,7 +73,7 @@ jobs:
 
      - name: Check if Calendar.jsx is not empty
        run: |
-         if [ ! -s ./TritonTurnUp/src/Calendar.jsx ]; then
+         if [ ! -s ./TritonTurnUp/src/components/pages/Calendar.jsx ]; then
            echo "Error: Calendar.jsx is empty!"
            exit 1
          else
