@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "vitest"
+  },
   "dependencies": {
     "react-big-calendar": "^1.15.0"
   }
