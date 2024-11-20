@@ -1,10 +1,13 @@
 import React from 'react';
+import './Schedule.css';
 
 function Schedule(){
 
     return (
         
-        <div>Schedule/calendar should go here</div>
+        <div className='schedule'>
+            <p>Schedule/calendar should go here</p>
+        </div>
     
     )
 
