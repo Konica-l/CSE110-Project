@@ -15,5 +15,5 @@ const Profile = () => {
     </div>
   )
 }
-
+/* "react-router-dom": "^6.27.0",*/
 export default Profile
