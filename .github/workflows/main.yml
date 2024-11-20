@@ -31,7 +31,25 @@ jobs:
    steps:
      - name: Checkout repository
        uses: actions/checkout@v4 # using version 4 of Actions
-      
+     - name: Checkout Code
+       uses: actions/checkout@v3
+       
+     - name: Set up Node.js
+       uses: actions/setup-node@v3
+       with:
+        node-version: '16' # or whichever version you need
+
+  
+     - name: Install Dependencies
+       run: |
+        cd TritonTurnUp
+        npm install
+
+  
+     - name: Unit Tests
+       run: |
+        cd TritonTurnUp
+        npm test
      - name: Install Dependencies
        working-directory: ./TritonTurnUp
        run: npm install
