@@ -4,7 +4,7 @@
   },
   "dependencies": {
     "react-big-calendar": "^1.15.0"
-  }
+  },
   "devDependencies": {
   "vitest": "^0.34.0"
   }
