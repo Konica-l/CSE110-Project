@@ -5,7 +5,7 @@ const Navbar = () => {
     // to change burger classes
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
     const [menu_class, setMenuClass] = useState("menu hidden")
-    const[isMenuClicked, setIsMenuClicked] = useState(false)
+    const [isMenuClicked, setIsMenuClicked] = useState(false)
 
     // toggle burger menu change
     const updateMenu = () => {
