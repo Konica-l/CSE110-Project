@@ -6,8 +6,8 @@ function EventPreview(props){
   return (
     <div className='event-preview'>
         {/* Image */}
-        <div className='img-crop'>
-        <img className='img' src={props.img} alt={props.title}/>
+        <div className='image-crop'>
+        <img className='image' src={props.img} alt={props.title}/>
         </div>
 
         {/* Text */}
