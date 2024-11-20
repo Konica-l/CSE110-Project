@@ -63,7 +63,7 @@ jobs:
 
      - name: Check if Profile.jsx is not empty
        run: |
-         if [ ! -s ./TritonTurnUp/src/pages/Profile.jsx ]; then
+         if [ ! -s ./TritonTurnUp/src/components/pages/Profile.jsx ]; then
            echo "Error: Profile.jsx is empty!"
            exit 1
          else
