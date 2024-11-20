@@ -12,7 +12,7 @@ const Login = () => {
           You can sign in using your Google account.
         </p>
         <img className="turnip" src={Turnip}/> <br />
-        <button className="google-login-button">Login with Google</button>
+        <button className="google-login-button" data-testid="login-with-google">Login with Google</button>
       </div>
     </div>
   );
