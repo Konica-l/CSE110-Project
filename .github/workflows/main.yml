@@ -38,18 +38,7 @@ jobs:
        uses: actions/setup-node@v3
        with:
         node-version: '16' # or whichever version you need
-
-  
-     - name: Install Dependencies
-       run: |
-        cd TritonTurnUp
-        npm install
-
-  
-     - name: Unit Tests
-       run: |
-        cd TritonTurnUp
-        npm test
+        
      - name: Install Dependencies
        working-directory: ./TritonTurnUp
        run: npm install
