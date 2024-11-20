@@ -7,38 +7,6 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(timezone)
 
-
-
-/*export default function CalendarConstruct({
-  localizer = mlocalizer,
-  ...props
-}) {
-  const {views} = useMemo( 
-    () => ({
-      components: {
-        timeSlotWrapper: ColoredDateCellWrapper,
-      },
-      views: Object.keys(Views).map((k) => Views[k]),
-    }),
-    []
-  )
-}
-return (
-    <div>
-      <Navbar />
-      <h1>Calendar</h1>
-      <div id = "calendar">
-        <Calendar
-            localizer = {mlocalizer}
-            events = {events}
-            startAccessor= "start"
-            endAccessor= "end"
-            views = {views}
-            style = {{ height: 800 }}
-          />
-      </div>
-    </div>
-)*/
 const ColoredDateCellWrapper = ({ children }) =>
   React.cloneElement(React.Children.only(children), {
     style: {

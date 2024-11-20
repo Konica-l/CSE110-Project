@@ -11,6 +11,8 @@
     "test": "vitest --watch"
   },
   "dependencies": {
+    "gapi-script": "^1.2.0",
+    "jwt-decode": "^4.0.0",
     "@testing-library/react": "^16.0.1",
     "dayjs": "^1.11.13",
     "moment": "^2.30.1",
