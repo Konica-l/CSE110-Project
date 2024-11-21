@@ -1,0 +1,14 @@
+.heading{
+
+    margin-top: 15px;
+
+}
+
+.dayContainer {
+
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    
+}

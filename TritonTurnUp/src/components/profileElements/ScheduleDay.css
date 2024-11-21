@@ -1,0 +1,37 @@
+.Day {
+    
+    /*place-self: center;*/
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 400px;
+
+}
+
+.time {
+
+    text-align: left;
+
+}
+
+.horizontal-line {
+    width: 100%; /* Full width of the container */
+    height: 2px; /* Line thickness */
+    background-color: #000; /* Line color */
+    margin: 20px 0; /* Space above and below the line */
+}
+
+.overlay {
+    position: absolute; /* Positions relative to the nearest positioned ancestor */
+    background: rgba(255, 8, 8, 0.5); /* Semi-transparent background */
+    color: rgb(0, 0, 0); /* Text color */
+    padding: 10px;
+    border-radius: 5px;
+    height: 200px;
+    width: 280px;
+    margin-left: 60px;
+  }
+
+
