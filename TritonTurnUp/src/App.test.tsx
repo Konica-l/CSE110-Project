@@ -44,10 +44,10 @@ describe("Home", () => {
   test("Event card exists", () => {
     render(<App />);
 
-    const eventTitle = screen.queryByText("Event Title");
-    const label = screen.queryAllByText("Label");
+    const next = screen.queryByText("Next");
+    const previous = screen.queryAllByText("Previous");
 
-    expect(eventTitle).to.exist;
-    expect(label).to.exist;
+    expect(next).to.exist;
+    expect(previous).to.exist;
   });
 });

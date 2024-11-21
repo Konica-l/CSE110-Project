@@ -76,7 +76,11 @@ def get_calendar_list(ids):
     ids_list = ids.split('+')
     
     placeholders = ','.join('?' for _ in ids_list)
+<<<<<<< Updated upstream:TritonTurnUp/server/app.py
     query = f"SELECT id, title, date_time FROM events WHERE id IN ({placeholders})"
+=======
+    query = f"SELECT id, title, tags, start_date, end_date FROM events WHERE id IN ({placeholders})"
+>>>>>>> Stashed changes:TritonTurnUp/server/events.py
     
     cursor.execute(query, ids_list)
     events = cursor.fetchall()
@@ -85,7 +89,8 @@ def get_calendar_list(ids):
         {
             "id": event[0],        
             "title": event[1],
-            "date_time": event[2],
+            "start_date": event[2],
+            "end_date": event[3]
         }
         for event in events
     ]
