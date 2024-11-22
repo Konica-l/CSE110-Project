@@ -11,8 +11,8 @@ const Profile = () => {
     <div>
       <Navbar />
       <div className = "pageLayout">
-        <ProfileBar/>
-        <Schedule/>
+        <ProfileBar className = "item1"/>
+        <Schedule className = "item2" />
       </div>
     </div>
   )

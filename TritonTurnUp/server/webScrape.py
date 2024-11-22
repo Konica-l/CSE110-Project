@@ -6,11 +6,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, StaleElementReferenceException
 import time
+import re
+from datetime import datetime
+from datetime import datetime as dt, timedelta
 
 # Function to generate a unique ID based on event title and date_time
 def generate_event_id(title, date_time):
     unique_string = f"{title}_{date_time}"
     return hashlib.md5(unique_string.encode()).hexdigest()
+
+def remove_ordinal_suffix(date_str):
+    return re.sub(r'(\d+)(st|nd|rd|th)', r'\1', date_str)
 
 # Create database
 conn = sqlite3.connect('events.db')
@@ -79,7 +85,7 @@ def extract(event_index):
 
         # Click the card
         card.click()
-        time.sleep(0.5)
+        time.sleep(0.8)
 
         # Wait for expanded view to load
         WebDriverWait(driver, 5).until(
@@ -135,7 +141,7 @@ def extract(event_index):
 
         # Return to the previous page
         driver.back()
-        time.sleep(1)  # Wait for the main list to be visible again
+        time.sleep(1.2)  # Wait for the main list to be visible again
 
     except (NoSuchElementException, TimeoutException, StaleElementReferenceException):
         print("No event details")
@@ -148,9 +154,109 @@ for index in range(len(events)):
 cursor.execute("SELECT id FROM events")
 db_events = {row[0] for row in cursor.fetchall()}
 
-# Delete any event in the database not found in the current events on the website
-for db_event_id in db_events - current_events:
-    cursor.execute("DELETE FROM events WHERE id = ?", (db_event_id,))
+# Valid formats
+valid_date_time_pattern = re.compile(
+    r'^((Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+[A-Z][a-z]{2}\s+\d{1,2}(st|nd|rd|th)\s+\d{1,2}:\d{2}(am|pm)\s+-\s+\d{1,2}:\d{2}(am|pm))|'  # Format 1: Single day
+    r'((Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+[A-Z][a-z]{2}\s+\d{1,2}(st|nd|rd|th)\s+\d{1,2}:\d{2}(am|pm)\s+-\s+(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+\d{1,2}(st|nd|rd|th)\s+\d{1,2}:\d{2}(am|pm))$'  # Format 2: Multi-day
+)
+
+# Delete rows with invalid date_time format
+cursor.execute("SELECT id, date_time FROM events")
+events_to_check = cursor.fetchall()
+
+for event_id, date_time in events_to_check:
+    if not valid_date_time_pattern.match(date_time):
+        cursor.execute("DELETE FROM events WHERE id = ?", (event_id,))
+        print(f"Deleted event with invalid date_time: {event_id}, {date_time}")
+
+# Ensure the database has the new columns
+cursor.execute("ALTER TABLE events ADD COLUMN start_date INTEGER DEFAULT NULL")
+cursor.execute("ALTER TABLE events ADD COLUMN end_date INTEGER DEFAULT NULL")
+conn.commit()
+
+# Process all rows to calculate and update start_date and end_date
+cursor.execute("SELECT id, date_time FROM events")
+rows = cursor.fetchall()
+
+for row in rows:
+    event_id, date_time = row
+    try:
+        current_year = datetime.now().year
+
+        if " - " in date_time:
+            start_date, end_date = map(str.strip, date_time.split(" - ", 1))
+
+            month = start_date[4:7]
+            months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            current_month_index = months.index(month)
+
+            if any(day in end_date for day in ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]):
+                start_date_number = int(re.search(r'\d+', start_date).group())
+                end_date_number = int(re.search(r'\d+', end_date).group())
+                if end_date_number > start_date_number:
+                    end_date = end_date[:4] + month + " " + end_date[4:]
+                else:
+                    next_month_index = (current_month_index + 1) % 12
+                    next_month = months[next_month_index]
+                    end_date = end_date[:4] + next_month + " " + end_date[4:]
+            else:
+                match = re.match(r'(.*?\d+(st|nd|rd|th))', start_date)
+                if match:
+                    base_date = match.group(1)
+                    end_date = f"{base_date} {end_date}"
+        else:
+            start_date = date_time.strip() + ' 12:00am'
+            end_date = date_time.strip() + ' 11:59pm'
+
+        start_date = remove_ordinal_suffix(start_date)
+        end_date = remove_ordinal_suffix(end_date)
+
+        start_date = f"{start_date} {current_year}"
+        end_date = f"{end_date} {current_year}"
+
+        date_format = "%a %b %d %I:%M%p %Y"
+        start_timestamp = int(datetime.strptime(start_date, date_format).timestamp())
+        end_timestamp = int(datetime.strptime(end_date, date_format).timestamp())
+
+        # Update the database with calculated timestamps
+        cursor.execute("""
+            UPDATE events SET start_date = ?, end_date = ? WHERE id = ?
+        """, (start_timestamp, end_timestamp, event_id))
+    except Exception as e:
+        print(f"Error processing event {event_id}: {e}")
+
+conn.commit()
+
+# Add new columns for relative time in minutes from the start of the week
+cursor.execute("ALTER TABLE events ADD COLUMN start_minutes INTEGER DEFAULT NULL")
+cursor.execute("ALTER TABLE events ADD COLUMN end_minutes INTEGER DEFAULT NULL")
+conn.commit()
+
+# Function to calculate minutes from the start of the week
+def calculate_minutes_from_week_start(unix_timestamp):
+    event_time = dt.fromtimestamp(unix_timestamp)
+    start_of_week = event_time - timedelta(days=event_time.weekday(), hours=event_time.hour, minutes=event_time.minute, seconds=event_time.second, microseconds=event_time.microsecond)
+    minutes_from_start = int((event_time - start_of_week).total_seconds() / 60)
+    return minutes_from_start
+
+# Process all rows to calculate and update start_minutes and end_minutes
+cursor.execute("SELECT id, start_date, end_date FROM events")
+rows = cursor.fetchall()
+
+for row in rows:
+    event_id, start_date, end_date = row
+    try:
+        if start_date and end_date:
+            start_minutes = calculate_minutes_from_week_start(start_date)
+            end_minutes = calculate_minutes_from_week_start(end_date)
+
+            # Update the database with calculated minutes
+            cursor.execute("""
+                UPDATE events SET start_minutes = ?, end_minutes = ? WHERE id = ?
+            """, (start_minutes, end_minutes, event_id))
+    except Exception as e:
+        print(f"Error processing event {event_id}: {e}")
+
 conn.commit()
 
 # Closing

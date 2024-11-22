@@ -1,4 +1,4 @@
-.event-card{
+.event-card-container{
     place-self: center;
     margin-top: 20px;
     background-color: white;
@@ -10,30 +10,30 @@
     text-align: center;
     width: 400px;
 }
-.event-card-container{
+.event-card{
     width: 100%;
 }
-.img-crop{
+.event-img-crop{
     max-height: 400px;
     border-radius: 8px;
     overflow: hidden;
 }
-.img{
+.event-img{
     width: 100%;
     border-radius: 8px;
 }
-.title, .date, .preview{
+.event-title, .event-date, .event-preview{
     margin: 4px;
 }
-.title{
+.event-title{
     font-weight: bold;
     font-size: larger;
 }
-.date{
+.event-date{
     font-weight: bold;
 }
 
-.tags{
+.event-tags{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -48,7 +48,7 @@
         padding-bottom: 1px;
     }
 }
-.buttons button{
+.event-buttons button{
     padding-top: 4px;
     margin-inline: 4px;
     width: 110px;
@@ -56,11 +56,11 @@
     border: 1px solid black;
     border-radius: 4px;
 }
-.buttons button img{
+.event-buttons button img{
     place-self: center;
     max-height: 30px;
 }
-.buttons button:hover{
+.event-buttons button:hover{
     cursor: pointer;
     background-color: #e2c6e2;
 }
