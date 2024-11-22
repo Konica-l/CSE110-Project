@@ -13,32 +13,32 @@
     height: 150px;
     text-align: left;
 }
-.image-crop{
+.small-image-crop{
     height: 100%;
     width: 75px;
     max-height: 150px;
     overflow: hidden;
     border-radius: 5px;
 }
-.image{
+.small-image{
     height: 100%;
     object-fit: cover;
 }
-.text{
+.small-text{
     display: flex;
     flex-direction: column;
     gap: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.title{
+.small-title{
     font-weight: bold;
     font-size: 16px;
 }
-.date{
+.small-date{
     font-weight: bold;
     font-size: 14px;
 }
-.preview{
+.small-preview{
     font-size: 14px;
 }

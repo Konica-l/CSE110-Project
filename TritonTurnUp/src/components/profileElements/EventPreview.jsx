@@ -6,15 +6,15 @@ function EventPreview(props){
   return (
     <div className='event-preview'>
         {/* Image */}
-        <div className='image-crop'>
-        <img className='image' src={props.img} alt={props.title}/>
+        <div className='small-image-crop'>
+        <img className='small-image' src={props.img} alt={props.title}/>
         </div>
 
         {/* Text */}
-        <div className='text'>
-            <p className='title'>{props.title}</p>
-            <p className='date'>{props.date}</p>
-            <p className='preview'>{props.text}</p>
+        <div className='small-text'>
+            <p className='small-title'>{props.title}</p>
+            <p className='small-date'>{props.date}</p>
+            <p className='small-preview'>{props.text}</p>
         </div>
     </div>
   )
