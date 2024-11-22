@@ -34,7 +34,7 @@ const Navbar = () => {
             </div>
 
             <ul>
-                <li className='login-button'><a href="/login">Login</a></li>
+                <li className='login-button' data-testid="logbut"><a href="/login">Login</a></li>
                 <li className='signup-button'><a href="/sign-up">Sign Up</a></li>
             </ul>            
         </nav>
