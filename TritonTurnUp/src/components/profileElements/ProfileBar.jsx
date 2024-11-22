@@ -4,12 +4,18 @@ import EventSummary from '../profileElements/EventSummary'
 
 const ProfileBar = () => {
     return (
-        <div>
-            <h1 className = "heading"> My Profile: </h1>
-            <h2 className = "heading">(Username)</h2>
-            <img className= "userimg" src="https://ih1.redbubble.net/image.5179670953.2221/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" />
-            <h2 className = "heading"> My Events:</h2>
-            <EventSummary />
+        <div className='profile'>
+            <h2 className = "heading1"> My Profile:</h2>
+
+            <div className='user'>
+                <img className= "userimg" src="https://i.pinimg.com/736x/4c/33/42/4c334214f0a9ea49c2468a23ff5596c0.jpg" />
+                <h2 className = "heading">Super Mario</h2>
+            </div>
+
+            <div className='event-summary'>
+                <h2 className = "heading2"> My Events:</h2>
+                <EventSummary />
+            </div>
         </div>
     )
 }
