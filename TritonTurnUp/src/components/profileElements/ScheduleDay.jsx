@@ -6,10 +6,8 @@ function ScheduleDay(){
     return (
         
         <div className = "Day">
-            <h2> Day of the Week: </h2>
             <h2> Mornings ~ 8:00am-11:59am: </h2>
             <h3 className= "time">8:00:</h3>
-            <div className= "overlay">Event 1 (8:00-10:00)</div>
             <div class="horizontal-line"></div>
             <h3 className= "time">9:00:</h3>
             <div class="horizontal-line"></div>
