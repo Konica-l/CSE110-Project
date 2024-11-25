@@ -5,14 +5,24 @@ import Labels from './Labels'
 import rejectImage from '../../assets/X circle.png'
 import linkImage from '../../assets/External link.png'
 import acceptImage from '../../assets/Check square.png'
+import myData from './meEvents.json'
 
 function Event(props){
   // state to toggle confirmation pop-up
   const [modalOpen, setModalOpen] = useState(false)
+  const [savedEvents] = useState(myData.events)
 
  // handler to close pop-up
   const handleModel = () => {
     setModalOpen(false)
+    if (savedEvents.includes(props)) {
+      alert('event already added')
+      console.log(savedEvents, 'detect duplicate event')
+      return;
+    } else {
+    savedEvents.push(props)
+    }
+    console.log(savedEvents)
   }
 
   return (
