@@ -103,6 +103,28 @@
     font-weight: bold;
 }
 
+.button-container {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.add-event-button {
+    background-color: #6ccf70;
+    color: rgb(255, 255, 255);
+    border: 15px solid #c2a0dc;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 25px;
+    font-style: bold;
+    border-radius: 23px;
+    width: 100%;
+}
+
+.add-event-button:hover {
+    background-color: #58b85e;
+}
+
+
 @media (max-width: 768px) {
     .event-details {
         flex-direction: column;
