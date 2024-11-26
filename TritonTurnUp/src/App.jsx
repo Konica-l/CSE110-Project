@@ -7,6 +7,9 @@ import Calendar from "./components/pages/Calendar"
 import NoPage from './components/pages/NoPage'
 import Login from './components/pages/Login'
 import { useGoogleLogin, googleLogout} from '@react-oauth/google';
+import SignUp from './components/pages/SignUp'
+import Search from './components/pages/Search'
+import EventPage from './components/pages/EventPage'
 
 function App() {
   const [user, setUser] = useState(null); // Track logged-in user state
@@ -57,6 +60,8 @@ function App() {
           <Route path="/profile" element={<Profile user={user} logout={logout} login={login} />}></Route>
           <Route path="/calendar" element={<Calendar />}></Route>
           <Route path="/login" element={<Login user={user} login={login}/>}></Route>
+          <Route path="/search" element={<Search />}></Route>
+          <Route path="/event" element={<EventPage />}></Route>
           <Route path="*" element={<NoPage />}></Route>
         </Routes>
       </BrowserRouter>
