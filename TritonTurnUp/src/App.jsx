@@ -30,7 +30,16 @@ function App() {
       const userInfo = await res.json();
       console.log('User Info:', userInfo);
       setUser(userInfo);
+
+      // Add customer ID to database
+      const serverResponse = await fetch(`http://127.0.0.1:5000/customer/${userInfo.sub}`, {
+        method: 'GET',
+      });          
+
       localStorage.setItem('user', JSON.stringify(userInfo)); // Save user info to localStorage
+
+      // Refresh page to make information show up
+      window.location.reload();
     } catch (error) {
       console.error('Error fetching user info:', error);
     }
