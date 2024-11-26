@@ -1,0 +1,90 @@
+# name: Unit Tests # name of the test
+
+# on:
+#  push:
+#    branches: [ StarterCodeDrafts ]  # or 'master' if that's your primary branch name
+#  pull_request:
+#    branches: [ StarterCodeDrafts ] # the Github Action will activate "on" the event that you "push" to the repo
+
+# jobs: # the things being executed
+#  tests: # the name of your status check, will become important when you do branch protection
+#    runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+#    steps:
+#      - uses: actions/checkout@v4 # using version 4 of Actions
+#      - name: Install Dependencies
+#        run: npm install
+#      - name: Unit Test
+#        run: npm test # the actual testing line
+
+name: Commit Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Adjust as per your project's Node.js version
+
+      # Install Dependencies
+      - name: Install Dependencies
+        working-directory: ./TritonTurnUp
+        run: npm install
+
+      # Check if App.jsx is not empty
+      - name: Check if App.jsx is not empty
+        run: |
+          if [ ! -s ./TritonTurnUp/src/App.jsx ]; then
+            echo "Error: App.jsx is empty!"
+            exit 1
+          else
+            echo "App.jsx is not empty."
+          fi
+
+      # Check if Home.jsx is not empty
+      - name: Check if Home.jsx is not empty
+        run: |
+          if [ ! -s ./TritonTurnUp/src/components/pages/Home.jsx ]; then
+            echo "Error: Home.jsx is empty!"
+            exit 1
+          else
+            echo "Home.jsx is not empty."
+          fi
+
+      # Check if Profile.jsx is not empty
+      - name: Check if Profile.jsx is not empty
+        run: |
+          if [ ! -s ./TritonTurnUp/src/components/pages/Profile.jsx ]; then
+            echo "Error: Profile.jsx is empty!"
+            exit 1
+          else
+            echo "Profile.jsx is not empty."
+          fi
+
+      # Check if Calendar.jsx is not empty
+      - name: Check if Calendar.jsx is not empty
+        run: |
+          if [ ! -s ./TritonTurnUp/src/components/pages/Calendar.jsx ]; then
+            echo "Error: Calendar.jsx is empty!"
+            exit 1
+          else
+            echo "Calendar.jsx is not empty."
+          fi
+
+      # Run Unit Tests
+      - name: Unit Tests
+        working-directory: ./TritonTurnUp
+        run: npx vitest
+

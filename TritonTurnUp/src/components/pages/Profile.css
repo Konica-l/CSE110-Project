@@ -1,0 +1,21 @@
+.pageLayout {
+
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+
+}
+
+.item1{
+
+    width: 0px;
+
+}
+
+.item2{
+
+    flex: 1;
+
+}
+
