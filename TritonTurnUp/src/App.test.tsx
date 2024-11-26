@@ -45,7 +45,17 @@ describe("Home", () => {
     render(<App />);
 
     const next = screen.queryByText("Next");
-    const previous = screen.queryAllByText("Previous");
+    const previous = screen.queryByText("Previous");
+
+    expect(next).to.exist;
+    expect(previous).to.exist;
+  });
+
+  test("Event card exists", () => {
+    render(<App />);
+
+    const next = screen.queryByText("Next");
+    const previous = screen.queryByText("Previous");
 
     expect(next).to.exist;
     expect(previous).to.exist;

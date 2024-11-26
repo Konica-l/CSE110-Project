@@ -1,53 +1,67 @@
-import React, { useState} from 'react'
-import './Navbar.css'
+import React, { useState } from 'react';
+import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-    // to change burger classes
-    const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
-    const [menu_class, setMenuClass] = useState("menu hidden")
-    const [isMenuClicked, setIsMenuClicked] = useState(false)
+    const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
+    const [menu_class, setMenuClass] = useState("menu hidden");
+    const [isMenuClicked, setIsMenuClicked] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
 
-    // toggle burger menu change
+    // Toggle burger menu
     const updateMenu = () => {
-        if(!isMenuClicked) {
-            setBurgerClass("burger-bar clicked")
-            setMenuClass("menu visible")
+        if (!isMenuClicked) {
+            setBurgerClass("burger-bar clicked");
+            setMenuClass("menu visible");
+        } else {
+            setBurgerClass("burger-bar unclicked");
+            setMenuClass("menu hidden");
         }
-        else {
-            setBurgerClass("burger-bar unclicked")
-            setMenuClass("menu hidden")
+        setIsMenuClicked(!isMenuClicked);
+    };
+
+    // Handle search input submission
+    const handleSearchSubmit = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent page refresh
+            navigate(`/search?q=${searchQuery}`);
         }
-        setIsMenuClicked(!isMenuClicked)
-    } 
+    };
 
-  return (
-    <>
-        <nav>
-            <div className='burger-menu' data-testid="open-menu" onClick={updateMenu}>
-                <div className={burger_class}></div>
-                <div className={burger_class}></div>
-                <div className={burger_class}></div>
+    return (
+        <>
+            <nav>
+                <div className="burger-menu" onClick={updateMenu}>
+                    <div className={burger_class}></div>
+                    <div className={burger_class}></div>
+                    <div className={burger_class}></div>
+                </div>
+
+                <div className="search-bar">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleSearchSubmit}
+                    />
+                </div>
+
+                <ul>
+                    <li className="login-button"><a href="/login">Login</a></li>
+                </ul>
+            </nav>
+
+            <div className={menu_class}>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/calendar">Calendar</a></li>
+                </ul>
             </div>
+        </>
+    );
+};
 
-            <div className='search-bar'>
-                <input type="text" placeholder='Search'/>
-            </div>
-
-            <ul>
-                <li className='login-button'><a href="/login">Login</a></li>
-                <li className='signup-button'><a href="/sign-up">Sign Up</a></li>
-            </ul>            
-        </nav>
-
-        <div className={menu_class}>
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/calendar">Calendar</a></li>
-            </ul>
-        </div>
-    </>
-  )
-}
-
-export default Navbar
+export default Navbar;
