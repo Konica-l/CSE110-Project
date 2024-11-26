@@ -7,7 +7,6 @@ import Calendar from "./components/pages/Calendar"
 import NoPage from './components/pages/NoPage'
 import Login from './components/pages/Login'
 import { useGoogleLogin, googleLogout} from '@react-oauth/google';
-import SignUp from './components/pages/SignUp'
 import Search from './components/pages/Search'
 import EventPage from './components/pages/EventPage'
 
