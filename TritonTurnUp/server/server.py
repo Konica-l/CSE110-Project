@@ -52,10 +52,10 @@ def search_events_by_title(title):
     db = get_db_events()
     cursor = db.cursor()
     if title:
-        query = "SELECT id, title, image_url, preview, date_time, tags FROM events WHERE title LIKE ?"
+        query = "SELECT id, title, image_url, preview, date_time, tags FROM events WHERE title LIKE ? ORDER BY start_date"
         cursor.execute(query, (f"%{title}%",))
     else:
-        query = "SELECT id, title, image_url, preview, date_time, tags FROM events"
+        query = "SELECT id, title, image_url, preview, date_time, tags FROM events ORDER BY start_date"
         cursor.execute(query)
     events = cursor.fetchall()
     events_list = [
@@ -195,25 +195,32 @@ def clear_time_conflicts(customer_id):
 
 #Combined functionality
 @app.route('/customer/available_events/<string:customer_id>', methods=['GET'])
-def get_available_events(customer_id):
+@app.route('/customer/available_events/', methods=['GET'])  # Handle route with no customer_id
+def get_available_events(customer_id=None):
     db_customers = get_db_customers()
     db_events = get_db_events()
 
-    # Fetch customer data
-    cursor = db_customers.cursor()
-    cursor.execute("SELECT subscribed_events, ignored_events, time_conflicts FROM customers WHERE customer_id = ?", (customer_id,))
-    customer = cursor.fetchone()
+    if customer_id:
+        # Fetch customer data
+        cursor = db_customers.cursor()
+        cursor.execute("SELECT subscribed_events, ignored_events, time_conflicts FROM customers WHERE customer_id = ?", (customer_id,))
+        customer = cursor.fetchone()
 
-    if not customer:
-        return jsonify({"error": f"Customer ID {customer_id} not found"}), 404
+        if not customer:
+            return jsonify({"error": f"Customer ID {customer_id} not found"}), 404
 
-    subscribed_events = customer['subscribed_events'].split(',') if customer['subscribed_events'] else []
-    ignored_events = customer['ignored_events'].split(',') if customer['ignored_events'] else []
-    time_conflicts = customer['time_conflicts'].split(',') if customer['time_conflicts'] else []
+        subscribed_events = customer['subscribed_events'].split(',') if customer['subscribed_events'] else []
+        ignored_events = customer['ignored_events'].split(',') if customer['ignored_events'] else []
+        time_conflicts = customer['time_conflicts'].split(',') if customer['time_conflicts'] else []
+    else:
+        # If no customer_id is provided, treat all filters as empty
+        subscribed_events = []
+        ignored_events = []
+        time_conflicts = []
 
     # Fetch all events
     cursor = db_events.cursor()
-    cursor.execute("SELECT id, title, image_url, preview, date_time, tags, start_minutes, end_minutes FROM events")
+    cursor.execute("SELECT id, title, image_url, preview, date_time, tags, start_minutes, end_minutes FROM events ORDER BY date_time")
     events = cursor.fetchall()
 
     # Filter events
@@ -267,7 +274,7 @@ def get_subscribed_events(customer_id):
         return jsonify({"message": "No subscribed events found for this customer"}), 200
 
     placeholders = ','.join('?' for _ in subscribed_events)
-    query = f"SELECT id, title, image_url, preview, date_time, tags FROM events WHERE id IN ({placeholders})"
+    query = f"SELECT id, title, image_url, preview, date_time, tags FROM events WHERE id IN ({placeholders}) ORDER BY start_date"
     cursor = db_events.cursor()
     cursor.execute(query, subscribed_events)
     events = cursor.fetchall()
