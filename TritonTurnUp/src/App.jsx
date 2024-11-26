@@ -31,12 +31,13 @@ function App() {
       console.log('User Info:', userInfo);
       setUser(userInfo);
 
+      // Save user info to localStorage
+      localStorage.setItem('user', JSON.stringify(userInfo)); 
+
       // Add customer ID to database
       const serverResponse = await fetch(`http://127.0.0.1:5000/customer/${userInfo.sub}`, {
         method: 'GET',
       });          
-
-      localStorage.setItem('user', JSON.stringify(userInfo)); // Save user info to localStorage
 
       // Refresh page to make information show up
       window.location.reload();
