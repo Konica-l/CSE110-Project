@@ -38,17 +38,6 @@ nav ul .login-button a{
     margin-left: 0.5em;
     border-radius: 0.5em;
 }
-nav ul .signup-button a{
-    text-decoration: none;
-    background-color: #6b6b6b;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #6b6b6b;
-    color: #efe8ef;
-    padding: 0.5em;
-    margin-left: 0.5em;
-    border-radius: 0.5em;
-}
 nav ul li a{
     display: block;
     text-decoration: none;
@@ -56,11 +45,6 @@ nav ul li a{
 nav ul .login-button a:hover{
     background-color: #e2c6e2;
 }
-nav ul .signup-button a:hover{
-    background-color: #e2c6e2;
-    color: black;
-}
-
 /*--------------------burger menu--------------------*/
 .burger-menu{
     padding: 5px;
