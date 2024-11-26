@@ -1,29 +1,51 @@
 .event-preview {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 100px 1fr;
     align-items: center;
     gap: 10px;
     place-self: center;
     margin-top: 10px;
-    background-color: white;
-    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border: none;
     border-radius: 8px;
     padding: 20px;
     width: 400px;
-    height: 150px;
+    height: auto;
     text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
-.small-image-crop{
+
+
+.small-image-crop {
+    width: 100px;
     height: 100%;
-    width: 75px;
     max-height: 150px;
     overflow: hidden;
     border-radius: 5px;
+    background-color: #ffffff00;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
-.small-image{
-    height: 100%;
+
+.small-image {
+    width: 100%; 
+    height: auto;
     object-fit: cover;
 }
+
+.event-preview-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.event-preview:hover {
+    background-color: #c2a0dc;; 
+    cursor: pointer;
+    color: white;
+}
+
+
 .small-text{
     display: flex;
     flex-direction: column;
