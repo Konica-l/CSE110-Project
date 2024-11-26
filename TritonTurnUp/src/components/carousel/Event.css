@@ -1,4 +1,4 @@
-.event-card-container{
+.carousel-card-container{
     place-self: center;
     margin-top: 20px;
     background-color: white;
@@ -10,30 +10,30 @@
     text-align: center;
     width: 400px;
 }
-.event-card{
+.carousel-card{
     width: 100%;
 }
-.event-img-crop{
+.carousel-card-img-crop{
     max-height: 400px;
     border-radius: 8px;
     overflow: hidden;
 }
-.event-img{
+.carousel-card-img{
     width: 100%;
     border-radius: 8px;
 }
-.event-title, .event-date, .event-preview{
+.carousel-card--title, .carousel-card-date, .carousel-card-preview{
     margin: 4px;
 }
-.event-title{
+.carousel-card-title{
     font-weight: bold;
     font-size: larger;
 }
-.event-date{
+.carousel-card-date{
     font-weight: bold;
 }
 
-.event-tags{
+.carousel-card-tags{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -48,7 +48,7 @@
         padding-bottom: 1px;
     }
 }
-.event-buttons button{
+.carousel-card-buttons button{
     padding-top: 4px;
     margin-inline: 4px;
     width: 110px;
@@ -56,11 +56,11 @@
     border: 1px solid black;
     border-radius: 4px;
 }
-.event-buttons button img{
+.carousel-card-buttons button img{
     place-self: center;
     max-height: 30px;
 }
-.event-buttons button:hover{
+.carousel-card-buttons button:hover{
     cursor: pointer;
     background-color: #e2c6e2;
 }
