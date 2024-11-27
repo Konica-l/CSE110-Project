@@ -34,13 +34,13 @@ const Navbar = ({user, login, logout}) => {
     return (
         <>
             <nav>
-                <div className="burger-menu" onClick={updateMenu}>
+                <div className="burger-menu" data-testid="open-menu" onClick={updateMenu}>
                     <div className={burger_class}></div>
                     <div className={burger_class}></div>
                     <div className={burger_class}></div>
                 </div>
 
-                <div className="search-bar">
+                <div className="search-bar" data-testid="search-exists">
                     <input
                         type="text"
                         placeholder="Search"
