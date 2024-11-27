@@ -68,7 +68,7 @@ function App() {
         <Routes>
           <Route index element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>
-          <Route path="/profile" element={<Profile user={user} logout={logout} login={login} />}></Route>
+          <Route path="/profile" element={<Profile user={user} login={login} />}></Route>
           <Route path="/calendar" element={<Calendar />}></Route>
           <Route path="/login" element={<Login login={login}/>}></Route>
           <Route path="/search" element={<Search />}></Route>

@@ -7,7 +7,7 @@ import Data from '../../event_list.json'
 import './Profile.css';
 import Login from './Login'
 
-const Profile = ({logout, login, user}) => {
+const Profile = ({login, user}) => {
   return (
     <>
       {user ? (
