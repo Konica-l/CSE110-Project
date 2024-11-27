@@ -1,3 +1,10 @@
+.event-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .event-preview {
     display: grid;
     grid-template-columns: 100px 1fr;
@@ -13,13 +20,15 @@
     height: auto;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
 }
 
 
 .small-image-crop {
     width: 100px;
     height: 100%;
-    max-height: 150px;
+    max-height: 125px;
     overflow: hidden;
     border-radius: 5px;
     background-color: #ffffff00;
@@ -29,9 +38,10 @@
 }
 
 .small-image {
-    width: 100%; 
-    height: auto;
+    height: 100%; 
+    width: auto;
     object-fit: cover;
+    border-radius: 8px;
 }
 
 .event-preview-link {
@@ -43,6 +53,7 @@
     background-color: #c2a0dc;; 
     cursor: pointer;
     color: white;
+    transform: scale(1.02);
 }
 
 
@@ -63,4 +74,48 @@
 }
 .small-preview{
     font-size: 14px;
+}
+
+.event-delete-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-icon {
+    width: 20px;
+    height: 50%;
+    filter: invert(40%);
+    transition: transform 0.2s ease;
+}
+
+.event-delete-button img {
+    width: 60px; 
+    height: 60px;
+    filter: invert(30%);
+    transition: transform 0.2s ease;
+}
+
+.event-delete-button:hover img {
+    transform: scale(1.15);
+    filter: invert(0%);
+}
+
+.event-preview-container {
+    transition: opacity 0.4s ease, transform 0.4s ease, max-height 1.2s ease;
+    opacity: 1;
+    max-height: 400px;
+    transform: translateY(0);
+}
+
+.event-preview-container.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+    max-height: 0px;
+    pointer-events: none;
 }

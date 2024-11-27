@@ -39,6 +39,7 @@ function EventSummary() {
                         text={event.preview}
                         img={event.image}
                         id={event.id}
+                        sub={user.sub}
                     />
                 ))
             ) : (

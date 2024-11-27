@@ -1,50 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ScheduleDay.css';
 
-function ScheduleDay(){
+
+function ScheduleDay({index}){
+
+    const [selectedSlots, setSelectedSlots] = useState([]);
+    const times = ["8am", "9am", "10am","11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm"];
+
+    const toggleSlot = (slot) => {
+        if (selectedSlots.includes(slot)) {
+            setSelectedSlots(selectedSlots.filter((s) => s !== slot));
+        } else {
+            setSelectedSlots([...selectedSlots, slot]);
+        }
+    };
 
     return (
-        
-        <div className = "Day">
-            <h2> Mornings ~ 8:00am-11:59am: </h2>
-            <h3 className= "time">8:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">9:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">10:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">11:00:</h3>
-            <div class="horizontal-line"></div>
+        <div>
+            <div className="day_container">
+                <div>
+                    {index==0 ?
+                     
+                        times.map((time) => {
+                            return (
+                                <div
+                                    key={time}
+                                    className="time"
+                                >
+                                    <h3>{time}</h3>
+                                </div>
+                            );
+                        })
 
-            <h2> Afternoons ~ 12:00pm-4:59pm: </h2>
-            <h3 className= "time">12:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">1:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">2:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">3:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">4:00:</h3>
-            <div class="horizontal-line"></div>
+                    :
 
-            <h2> Evenings ~ 5:00pm-11:59pm: </h2>
-            <h3 className= "time">5:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">6:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">7:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">8:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">9:00:</h3>
-            <div class="horizontal-line"></div>
-            <h3 className= "time">10:00:</h3>
+                        times.map((time) => {
+                            return (
+                                <div
+                                    key={time}
+                                    className={`time-slot ${selectedSlots.includes(time) ? "selected" : ""}`}
+                                    onClick={() => toggleSlot(time)}
+                                >
+                                    <h3> - </h3>
+                                </div>
+                            );
+                        })
 
+                    }
+                </div>
+            </div>
         </div>
-    
     )
-
+    
 }
   
 export default ScheduleDay
