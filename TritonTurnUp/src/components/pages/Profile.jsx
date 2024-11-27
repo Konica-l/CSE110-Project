@@ -15,8 +15,8 @@ const Profile = ({logout, login, user}) => {
             <Navbar />
             <button onClick={logout} className="google-logout-button">Logout</button>
             <div className = "pageLayout">
-              <ProfileBar className = "item1"/>
-              <Schedule className = "item2" />
+            <ProfileBar className = "item1"/>  
+            <Schedule className = "item2" />
             </div>
           </div>
         ) : (
