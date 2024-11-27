@@ -2,8 +2,18 @@ import React from 'react';
 import { waitFor } from '@testing-library/react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect } from 'vitest'; // Vitest's describe and expect
+import '@testing-library/jest-dom';
 import App from './App';
+import Home from "./components/pages/Home"
+import Profile from "./components/pages/Profile"
+import Calendar from "./components/pages/Calendar"
+import NoPage from './components/pages/NoPage'
+import Login from './components/pages/Login'
+import Search from './components/pages/Search'
+import EventPage from './components/pages/EventPage'
+import Navbar from './components/navbar/Navbar'
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { vi } from 'vitest';
 
 describe("App", () => {
   test("Contains all elements", async () => {
@@ -72,5 +82,32 @@ describe("Home", () => {
     const search = screen.queryByTestId("search-exists");
 
     expect(search).to.exist;
+  });
+});
+
+describe("Profile", () => {
+  test("Displays user info when logged in", () => {
+    const mockUser = {
+      name: "John Doe",
+      picture: "https://lh3.googleusercontent.com/a/ACg8ocIlJx6Gsw0xw1--BnrzII2Trh9FSeqCKdI2qf8LrPgt4KKJ0A=s96-c",
+    };
+  
+    // Mock localStorage
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => JSON.stringify(mockUser));
+  
+    render(<Profile user={mockUser} login={() => {}} />);
+  
+    // Check if the user's name is rendered
+    expect(screen.getByText(/john doe/i)).toBeInTheDocument();
+  
+    // Check if the profile image is rendered correctly
+    const profileImage = screen.getByAltText(/user profile/i);
+    expect(profileImage).toHaveAttribute("src", mockUser.picture);
+  });
+
+  test("Displays login prompt when not logged in", () => {
+    render(<Profile user={null} login={() => {}} />);
+
+    expect(screen.getByText("Please log in with google to access your account.")).toBeInTheDocument();
   });
 });
