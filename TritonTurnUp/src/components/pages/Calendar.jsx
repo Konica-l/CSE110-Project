@@ -30,7 +30,6 @@ export default function Dayjs({ ...props }) {
 
   return (
     <Fragment>
-      <Navbar />
       <div className='height600' {...props}> 
         <Calendar
           components={components}

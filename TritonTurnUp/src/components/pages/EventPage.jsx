@@ -49,7 +49,6 @@ const EventPage = () => {
 
     return (
         <div>
-            <Navbar />
             <div className="event-container">
                 {event ? (
                     <div className="event-details">

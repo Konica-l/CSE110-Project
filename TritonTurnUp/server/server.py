@@ -220,7 +220,7 @@ def get_available_events(customer_id=None):
 
     # Fetch all events
     cursor = db_events.cursor()
-    cursor.execute("SELECT id, title, image_url, preview, date_time, tags, start_minutes, end_minutes FROM events ORDER BY date_time")
+    cursor.execute("SELECT id, title, image_url, preview, date_time, tags, start_minutes, end_minutes FROM events ORDER BY start_date")
     events = cursor.fetchall()
 
     # Filter events
@@ -233,8 +233,13 @@ def get_available_events(customer_id=None):
             continue
 
         # Skip events that conflict with time ranges
-        event_start = int(start_minutes)
-        event_end = int(end_minutes)
+        if(start_minutes):
+            event_start = int(start_minutes)
+            event_end = int(end_minutes)
+        else:
+            event_start = -1
+            event_end = -1
+
         conflict_found = False
         for conflict in time_conflicts:
             conflict_start, conflict_end = map(int, conflict.split('-'))
