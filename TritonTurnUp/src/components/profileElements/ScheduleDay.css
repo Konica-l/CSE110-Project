@@ -1,26 +1,34 @@
-.Day {
+.day_container {
     
-    /*place-self: center;*/
+    flex-direction: column;
     background-color: white;
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 10px;
     text-align: center;
-    width: 400px;
+    padding: 1px;
+    width: 100px;
 
 }
 
-.time {
+.time-slot {
 
-    text-align: left;
+    padding: 20px;
+    border: 1px solid #000000;
+    background-color: #eb9aff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
 
 }
 
-.horizontal-line {
-    width: 100%; /* Full width of the container */
-    height: 2px; /* Line thickness */
-    background-color: #000; /* Line color */
-    margin: 20px 0; /* Space above and below the line */
+.time-slot.selected {
+
+    padding: 20px;
+    border: 1px solid #000000;
+    background-color: #36074a;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+
 }
 
 
