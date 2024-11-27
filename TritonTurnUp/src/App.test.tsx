@@ -4,16 +4,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect } from 'vitest'; // Vitest's describe and expect
 import '@testing-library/jest-dom';
 import App from './App';
-import Home from "./components/pages/Home"
 import Profile from "./components/pages/Profile"
-import Calendar from "./components/pages/Calendar"
-import NoPage from './components/pages/NoPage'
-import Login from './components/pages/Login'
-import Search from './components/pages/Search'
-import EventPage from './components/pages/EventPage'
 import Navbar from './components/navbar/Navbar'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { vi } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 
 describe("App", () => {
   test("Contains all elements", async () => {
@@ -109,5 +104,38 @@ describe("Profile", () => {
     render(<Profile user={null} login={() => {}} />);
 
     expect(screen.getByText("Please log in with google to access your account.")).toBeInTheDocument();
+  });
+});
+
+describe("Navbar", () => {
+  test("Displays login button when not logged in", () => {
+    render(
+      <MemoryRouter>
+        <Navbar user={null} login={() => {}} logout={() => {}}/>
+      </MemoryRouter>
+    );
+
+    // Use getByRole to find the button
+    const loginButton = screen.getByRole('button', { name: /login/i });
+
+    expect(loginButton).toBeInTheDocument();
+  });
+
+  test("Displays logout button when not logged in", () => {
+    const mockUser = {
+      name: "John Doe",
+      picture: "https://lh3.googleusercontent.com/a/ACg8ocIlJx6Gsw0xw1--BnrzII2Trh9FSeqCKdI2qf8LrPgt4KKJ0A=s96-c",
+    };
+
+    render(
+      <MemoryRouter>
+        <Navbar user={mockUser} login={() => {}} logout={() => {}}/>
+      </MemoryRouter>
+    );
+
+    // Use getByRole to find the button
+    const loginButton = screen.getByRole('button', { name: /logout/i });
+
+    expect(loginButton).toBeInTheDocument();
   });
 });
