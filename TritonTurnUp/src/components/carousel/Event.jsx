@@ -9,26 +9,26 @@ import myData from './meEvents.json'
 
 function Event(props){
   // state to toggle confirmation pop-up
-  const [modalOpen, setModalOpen] = useState(false)
-  const [statusModalOpen, setStatusModalOpen] = useState(false)
+  // const [modalOpen, setModalOpen] = useState(false)
+  // const [statusModalOpen, setStatusModalOpen] = useState(false)
   const [savedEvents] = useState(myData.events)
 
   // handler to close pop-up
-  const handleCloseModal = () => {
-    setModalOpen(false)
-    setStatusModalOpen(false)
-  }
+  // const handleCloseModal = () => {
+  //   setModalOpen(false)
+  //   setStatusModalOpen(false)
+  // }
 
   // handler to add event to calendar  
   const handleAddEvent = () => {
-    setModalOpen(false)
-    setStatusModalOpen(true)
+    // setModalOpen(false)
+    // setStatusModalOpen(true)
     if (savedEvents.includes(props)) {
       alert('event already added')
       console.log(savedEvents, 'detect duplicate event')
       return;
     } else {
-      //alert('event added!')
+      alert('event added!')
       savedEvents.push(props)
     }
     console.log(savedEvents)
@@ -36,7 +36,7 @@ function Event(props){
 
   return (
     <div className='carousel-card-container'>
-      {modalOpen && 
+      {/* {modalOpen && 
         <Modal 
           onYes={handleAddEvent} 
           onNo={handleCloseModal}
@@ -45,8 +45,6 @@ function Event(props){
           <p>Would you like to add this event to your calendar?</p>
         </Modal>
       }
-
-      
       {statusModalOpen &&
         <Modal 
         onClose={handleCloseModal}
@@ -54,8 +52,7 @@ function Event(props){
         >
           <p>Event added.</p>
         </Modal>
-      }
-      
+      } */}
 
       <div className='carousel-card'>
         <p className='carousel-card-title'>{props.title}</p>
@@ -70,7 +67,7 @@ function Event(props){
         <div className='carousel-card-buttons'>
           <button onClick={() => props.notInterested()}><img src={rejectImage} alt='Reject'/></button>
           <button><img src={linkImage} alt='More'/></button>
-          <button onClick={() => setModalOpen(true)}><img src={acceptImage} alt='Accept'/></button>
+          <button onClick={() => handleAddEvent()}><img src={acceptImage} alt='Accept'/></button>
         </div>
       </div>
     </div>

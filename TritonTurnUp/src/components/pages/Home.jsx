@@ -77,7 +77,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Navbar />
       {error && <div className="error-message">{error}</div>}
       <div className="carousel">
         <button

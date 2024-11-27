@@ -27,7 +27,7 @@ nav ul li{
     list-style: none;
     z-index: 1000;
 }
-nav ul .login-button a{
+.login-logout-button {
     text-decoration: none;
     background-color: #efe8ef;
     border-style: solid;
@@ -37,6 +37,10 @@ nav ul .login-button a{
     padding: 0.5em;
     margin-left: 0.5em;
     border-radius: 0.5em;
+}
+.login-logout-button:hover{
+    background-color: #e2c6e2;
+    cursor: pointer;
 }
 nav ul li a{
     display: block;
@@ -63,7 +67,7 @@ nav ul .login-button a:hover{
 }
 .menu{
     position: fixed;
-    top: 69.6px;
+    top: 68px;
     width: 15em;
     height: 100vh;
     background-color: #6b6b6b;
