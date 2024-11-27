@@ -7,6 +7,7 @@
 /*Calendar: */
 
 .calendar{
+
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -14,51 +15,14 @@
     border-radius: 8px;
     padding: 30px;
     text-align: center;
+
 }
 
 .calendar_days_container{
 
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 3 columns of equal width */
-    margin-top: 10px;
-    gap: 20px;
-
-}
-
-.calendar_days_element{
-
-    height: 40px;
-    width: 100%;
-    font-size: 20px;
-
-}
-
-.day_button{
-
-    height: 40px;
-    width: 100%;
-    font-size: 20px;
-    background-color: #a677ec;
-
-}
-
-.active_day_button{
-
-    height: 40px;
-    width: 100%;
-    font-size: 20px;
-    background-color: #32007d;
-    color: white;
-
-}
-
-
-.schedule_for_day {
-
-    position: absolute;
-    top: 70px;
-    left: 20px;
-    width: 200px;
-    padding: 10px;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 30px;
+    gap: 10px;
 
 }
