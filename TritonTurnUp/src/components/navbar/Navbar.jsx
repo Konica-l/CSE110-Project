@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({user, login, logout}) => {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
     const [menu_class, setMenuClass] = useState("menu hidden");
     const [isMenuClicked, setIsMenuClicked] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+
+
 
     // Toggle burger menu
     const updateMenu = () => {
@@ -49,7 +51,11 @@ const Navbar = () => {
                 </div>
 
                 <ul>
-                    <li className="login-button"><a href="/login">Login</a></li>
+                    {user ? (
+                        <button className="login-logout-button" onClick={logout}>Logout</button>
+                    ) : (
+                        <button className="login-logout-button" onClick={login}>Login</button>
+                    )}
                 </ul>
             </nav>
 

@@ -9,6 +9,7 @@ import Login from './components/pages/Login'
 import { useGoogleLogin, googleLogout} from '@react-oauth/google';
 import Search from './components/pages/Search'
 import EventPage from './components/pages/EventPage'
+import Navbar from './components/navbar/Navbar'
 
 function App() {
   const [user, setUser] = useState(null); // Track logged-in user state
@@ -63,12 +64,13 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+        <Navbar user={user} login={login} logout={logout} />
         <Routes>
           <Route index element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/profile" element={<Profile user={user} logout={logout} login={login} />}></Route>
           <Route path="/calendar" element={<Calendar />}></Route>
-          <Route path="/login" element={<Login user={user} login={login}/>}></Route>
+          <Route path="/login" element={<Login login={login}/>}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/event" element={<EventPage />}></Route>
           <Route path="*" element={<NoPage />}></Route>
