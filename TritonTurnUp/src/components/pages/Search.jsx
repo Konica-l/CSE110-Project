@@ -33,7 +33,6 @@ const Search = () => {
 
     return (
         <>
-            <Navbar />
             <div className="events-container">
                 {error && <p className="error-message">{error}</p>}
                 {events.length > 0 ? (
