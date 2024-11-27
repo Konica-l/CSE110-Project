@@ -23,11 +23,14 @@ const Home = () => {
   
   useEffect(() => {
     if (user && user.sub) {
+      fetchEventsSub();
+    }
+    if (!user) {
       fetchEvents();
     }
   }, [user]);
   
-  const fetchEvents = async () => {
+  const fetchEventsSub = async () => {
     try {
       const url = `http://127.0.0.1:5000/customer/available_events/${user.sub}`;
       const response = await fetch(url);
@@ -42,6 +45,23 @@ const Home = () => {
       setEvents([]);
     }
   };
+
+  const fetchEvents = async () => {
+    try {
+      const url = `http://127.0.0.1:5000/customer/available_events/`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Failed to fetch events.');
+      }
+      const data = await response.json();
+      setEvents(data);
+      setError('');
+    } catch (err) {
+      setError(err.message);
+      setEvents([]);
+    }
+  };
+
 
   const handleNext = () => {
     if (currentIndex < events.length - 1) {
