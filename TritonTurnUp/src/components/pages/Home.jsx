@@ -94,6 +94,7 @@ const Home = () => {
             text={events[currentIndex].preview}
             img={events[currentIndex].image}
             tags={events[currentIndex].tags}
+            id = {events[currentIndex].id}
             notInterested={handleNext}
           />
         ) : (
