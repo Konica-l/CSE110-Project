@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Event.css';
 import Modal from './Modal'
 import Labels from './Labels'
@@ -11,7 +11,13 @@ function Event(props){
   // state to toggle confirmation pop-up
   // const [modalOpen, setModalOpen] = useState(false)
   // const [statusModalOpen, setStatusModalOpen] = useState(false)
-  const [savedEvents] = useState(myData.events)
+  const [user, setUser] = useState(null);  // State for user data
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {setUser(JSON.parse(storedUser))};
+  }, []);
+
 
   // handler to close pop-up
   // const handleCloseModal = () => {
@@ -19,19 +25,28 @@ function Event(props){
   //   setStatusModalOpen(false)
   // }
 
-  // handler to add event to calendar  
-  const handleAddEvent = () => {
+  // handler to add event to user database  
+  const handleAddEvent = async () => {
     // setModalOpen(false)
     // setStatusModalOpen(true)
-    if (savedEvents.includes(props)) {
-      alert('event already added')
-      console.log(savedEvents, 'detect duplicate event')
+
+    
+    if (!user?.sub) {  //detect if user is not signed in
+      alert('You are not signed in to be able to use this feature.')
       return;
-    } else {
-      alert('event added!')
-      savedEvents.push(props)
     }
-    console.log(savedEvents)
+    else {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/customer/subscribed/new/${user.sub}/${props.id}`, {
+
+        });
+
+        if (!response.ok) throw new Error('Failed to add event.');
+    } catch (err) {
+        console.error(err);
+    }
+      alert('event added!')
+    }
   }
 
   return (
