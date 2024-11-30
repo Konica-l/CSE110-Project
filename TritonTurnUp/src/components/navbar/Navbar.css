@@ -64,6 +64,7 @@ nav ul .login-button a:hover{
     height: 0.3em;
     background-color: black;
     border-radius: 0.5em;
+
 }
 .menu{
     position: fixed;
@@ -71,6 +72,7 @@ nav ul .login-button a:hover{
     width: 15em;
     height: 100vh;
     background-color: #6b6b6b;
+    z-index: 999;
 }
 .menu ul{
     flex-direction: column;

@@ -5,7 +5,6 @@ import Labels from './Labels'
 import rejectImage from '../../assets/X circle.png'
 import linkImage from '../../assets/External link.png'
 import acceptImage from '../../assets/Check square.png'
-import myData from './meEvents.json'
 
 function Event(props){
   // state to toggle confirmation pop-up
