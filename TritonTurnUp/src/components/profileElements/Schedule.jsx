@@ -7,7 +7,6 @@ function Schedule() {
     const daysOfWeek = ["Time", "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
 
-    /*Fetching user's events for today*/
 
     const [availableEvents, setAvailableEvents] = useState([]);
     const [customerId, setCustomerId] = useState(null);
