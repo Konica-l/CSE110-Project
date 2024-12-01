@@ -69,16 +69,14 @@ export default function Dayjs({ ...props }) {
     }
   }, [user?.sub]);
 
-  //delete unwanted keys
-  const eventCal = events.map(({end_minutes, image, preview, start_minutes, tags, ...rest}) => ({...rest}))
-
+  console.log(events)
   //parse dates from string to date object
-  for (var i = 0; i < eventCal.length; i++) {
-    var dateString = eventCal[i].date_time.split(' ');
+  for (var i = 0; i < events.length; i++) {
+    var dateString = events[i].date_time.split(' ');
 
     if (dateString.length === 6) { //indicates single-day event
       var timeNormalizer = timeConvert(dateString[3])
-      eventCal[i].start = new Date(
+      events[i].start = new Date(
                                   2024, 
                                   monthConvert(dateString[1]), 
                                   dayConvert(dateString[2]),
@@ -87,7 +85,7 @@ export default function Dayjs({ ...props }) {
                                   )
 
       timeNormalizer = timeConvert(dateString[5])
-      eventCal[i].end = new Date(
+      events[i].end = new Date(
                                 2024, 
                                 monthConvert(dateString[1]), 
                                 dayConvert(dateString[2]), 
@@ -98,7 +96,7 @@ export default function Dayjs({ ...props }) {
 
     if (dateString.length === 8) { //indicates multi-day event
       var timeNormalizer = timeConvert(dateString[3])
-      eventCal[i].start = new Date(
+      events[i].start = new Date(
                                   2024, 
                                   monthConvert(dateString[1]), 
                                   dayConvert(dateString[2]), 
@@ -107,7 +105,7 @@ export default function Dayjs({ ...props }) {
                                   )
       
       timeNormalizer = timeConvert(dateString[7])
-      eventCal[i].end = new Date(
+      events[i].end = new Date(
                                 2024, 
                                 monthConvert(dateString[1]), 
                                 dayConvert(dateString[6]), 
@@ -117,18 +115,11 @@ export default function Dayjs({ ...props }) {
     }
   }
 
-  const getEvent = async (event) => {
-    if (!event.sub) return;
-
-    try {
-        const response = await fetch(`http://127.0.0.1:5000/event/${event.id}`);
-        if (!response.ok) throw new Error('Failed to fetch event.');
-        const data = await response.json();
-        setEvent(data);
-    } catch (err) {
-        console.error(err);
-    }
-};
+  const handleSelectEvent = useCallback(
+    (event) => window.alert(event.title),
+               window.alert(event.time),
+    []
+  )
 
   //set calendar elements
   const { components,defaultDate, max, views } = useMemo(
@@ -147,8 +138,8 @@ export default function Dayjs({ ...props }) {
       <div className='height600' {...props}> 
         <Calendar
           defaultDate={defaultDate}
-          onSelectEvent= {getEvent}
-          events={eventCal}
+          onSelectEvent= {handleSelectEvent}
+          events={events}
           localizer = {localizer}
           max={max}
           showMultiDayTimes
