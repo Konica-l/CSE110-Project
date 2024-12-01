@@ -69,7 +69,6 @@ export default function Dayjs({ ...props }) {
     }
   }, [user?.sub]);
 
-  console.log(events)
   //parse dates from string to date object
   for (var i = 0; i < events.length; i++) {
     var dateString = events[i].date_time.split(' ');
@@ -116,8 +115,9 @@ export default function Dayjs({ ...props }) {
   }
 
   const handleSelectEvent = useCallback(
-    (event) => window.alert(event.title),
-               window.alert(event.time),
+    (event) => window.alert(['Start: ', event.start, '\n',
+                             'End: ', event.end 
+                            ], event.end),
     []
   )
 
