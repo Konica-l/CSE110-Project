@@ -1,17 +1,10 @@
 import Navbar from '../navbar/Navbar'
 import {Calendar, Views, dayjsLocalizer} from 'react-big-calendar'
-import {Fragment, useMemo, useState, useEffect} from 'react'
+import {Fragment, useMemo, useState, useEffect, useCallback} from 'react'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(timezone)
-
-const ColoredDateCellWrapper = ({ children }) =>
-  React.cloneElement(React.Children.only(children), {
-    style: {
-      backgroundColor: 'lightblue',
-    },
-  })
 
   function monthConvert(month) {
     if (month === "Jan") {return 0}
@@ -79,6 +72,7 @@ export default function Dayjs({ ...props }) {
   //delete unwanted keys
   const eventCal = events.map(({end_minutes, image, preview, start_minutes, tags, ...rest}) => ({...rest}))
 
+  //parse dates from string to date object
   for (var i = 0; i < eventCal.length; i++) {
     var dateString = eventCal[i].date_time.split(' ');
 
@@ -122,15 +116,27 @@ export default function Dayjs({ ...props }) {
                               )
     }
   }
-  console.log(eventCal)
 
-  const { components,defaultDate, max } = useMemo(
+  const getEvent = async (event) => {
+    if (!event.sub) return;
+
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/event/${event.id}`);
+        if (!response.ok) throw new Error('Failed to fetch event.');
+        const data = await response.json();
+        setEvent(data);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+  //set calendar elements
+  const { components,defaultDate, max, views } = useMemo(
     () => ({
-      components: {
-        timeSlotWrapper: ColoredDateCellWrapper,
-      },
+
       defaultDate: new Date().toLocaleDateString(),
       max: dayjs().endOf('day').subtract(1,'hours').toDate(),
+      views: [Views.MONTH, Views.DAY, Views.WEEK],
     }),
     []
   )
@@ -140,13 +146,14 @@ export default function Dayjs({ ...props }) {
     <Fragment>
       <div className='height600' {...props}> 
         <Calendar
-          components={components}
           defaultDate={defaultDate}
+          onSelectEvent= {getEvent}
           events={eventCal}
           localizer = {localizer}
           max={max}
           showMultiDayTimes
-          style = {{height: 600}}
+          style={{height: 600}}
+          views = {views}
           step={60}
         />
       </div>
