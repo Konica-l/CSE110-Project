@@ -12,18 +12,16 @@ function FinishButton({selectedTimeslotMatrix, userSelectedTimes, setUserSelecte
     // FUnction to calculate the time according to index within matrix:
     const calculatedTime = (day, hour) => {
 
+        //For sunday because it wraps:
         if (day == -1){
-        //sunday
 
-            day = 7;
+            day = 6;
 
         }
 
-        let hoursBetweenDays = day*24;
-
-        let hoursOnDay = 8+hour;
-
-        let totalTime = (hoursBetweenDays+hoursOnDay)*60;
+        const hoursBetweenDays = day*24;
+        const hoursOnDay = 8+hour;
+        const totalTime = (hoursBetweenDays+hoursOnDay)*60;
 
         return totalTime;
 
@@ -41,8 +39,8 @@ function FinishButton({selectedTimeslotMatrix, userSelectedTimes, setUserSelecte
 
             for (let i = 0; i < transposedMatrix.length; i++) {
     
-                let indices = [];
-                let currentDay = transposedMatrix[i];
+                const indices = [];
+                const currentDay = transposedMatrix[i];
     
                 for (let j = 0; j < currentDay.length; j++) {
     
@@ -71,15 +69,15 @@ function FinishButton({selectedTimeslotMatrix, userSelectedTimes, setUserSelecte
     
                             if (startFound == false){
     
-                                startTime = calculatedTime(i-1, j);
-                                endTime = calculatedTime(i-1, j);
+                                startTime = calculatedTime(i-1, indices[j]);
+                                endTime = calculatedTime(i-1, indices[j]+1);
     
                                 startFound = true;
                                 endFound = true;
     
                             } else {
     
-                                endTime = calculatedTime(i-1, j);
+                                endTime = calculatedTime(i-1, indices[j]+1);
                                 endFound = true;
     
                             }
@@ -88,7 +86,7 @@ function FinishButton({selectedTimeslotMatrix, userSelectedTimes, setUserSelecte
     
                             if (startFound == false){
     
-                                startTime = calculatedTime(i-1, j);
+                                startTime = calculatedTime(i-1, indices[j]);
                                 startFound = true;
     
                             }
@@ -96,7 +94,7 @@ function FinishButton({selectedTimeslotMatrix, userSelectedTimes, setUserSelecte
                             if (indices[j]+1 != indices[j+1]){
                             //the next timeslot after indices[j] is not selected (end of a period)
         
-                                endTime = calculatedTime(i-1, j);
+                                endTime = calculatedTime(i-1, indices[j]+1);
                                 endFound = true;
         
                             }
@@ -105,7 +103,7 @@ function FinishButton({selectedTimeslotMatrix, userSelectedTimes, setUserSelecte
     
                         if (startFound == true && endFound == true){
     
-                            let string = startTime.toString() + "-" + endTime.toString();
+                            const string = startTime.toString() + "-" + endTime.toString();
                             updatedArray.push(string);
     
                             startTime = 0;

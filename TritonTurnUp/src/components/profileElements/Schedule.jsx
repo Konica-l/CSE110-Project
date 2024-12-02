@@ -35,7 +35,12 @@ function Schedule() {
                 setUserSelectedTimes = {setUserSelectedTimes}
             />
 
-            {/* Just for checking by printing array */}
+
+
+            {/* The stuff below is just for testing and can be deleted later */}
+
+
+
             <div>
                 <ul>
                     {userSelectedTimes.map((item, index) => (
@@ -45,10 +50,6 @@ function Schedule() {
             </div>
 
 
-
-
-
-            {/* Just for checking by rendering matrix */}
             <div>
                 {matrix.map((row, rowIndex) => (
                     <div key={rowIndex} style={{ display: 'flex' }}>
