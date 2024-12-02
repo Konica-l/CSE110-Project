@@ -37,8 +37,7 @@ function Schedule() {
 
 
 
-            {/* The stuff below is just for testing and can be deleted later */}
-
+            {/* The stuff below is just for testing and can be deleted later 
 
 
             <div>
@@ -69,7 +68,7 @@ function Schedule() {
                     </div>
                 ))}
             </div>
-
+            */}
         </div>
 
     );
