@@ -25,3 +25,26 @@
     gap: 10px;
 
 }
+
+.update_button{
+
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #ce9ce5;
+    border-color: white;
+    border-radius: 10px;
+
+}
+
+.update_button:hover{
+
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #3c0057;
+    color: white;
+    border-color: white;
+    border-radius: 10px;
+
+}

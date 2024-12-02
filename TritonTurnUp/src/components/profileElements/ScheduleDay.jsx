@@ -2,23 +2,6 @@ import React, { useState} from 'react';
 import './ScheduleDay.css';
 
 
-/*
-clear_time_conflicts(customer_id):
-
-This function is used to clear any time conflict information (stored in the time_conflicts field) 
-for a specific customer identified by their customer_id.
-It retrieves the time_conflicts data, checks if the customer exists, and if so, updates the customer's 
-record by clearing the time_conflicts field. It returns a success message if the operation is successful, 
-or an error message if the customer doesn't exist.
-
-
-get_available_events(customer_id=None):
-
-The events are filtered based on whether they overlap with the customer's time conflicts, whether the customer is 
-already subscribed to the event, or whether the customer has ignored the event.
-
-*/
-
 function ScheduleDay({index}){
 
     /*ui stuff*/
