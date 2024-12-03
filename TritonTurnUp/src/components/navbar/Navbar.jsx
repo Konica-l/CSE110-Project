@@ -43,7 +43,7 @@ const Navbar = ({user, login, logout}) => {
                 <div className="search-bar" data-testid="search-exists">
                     <input
                         type="text"
-                        placeholder="Search"
+                        placeholder="Search for an event"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={handleSearchSubmit}

@@ -3,7 +3,9 @@
     margin-top: 20px;
     padding: 10px;
     font-size: 20px;
-    background-color: #ce9ce5;
+    background-color: #6ccf70;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
     border-color: white;
     border-radius: 10px;
 
@@ -14,7 +16,7 @@
     margin-top: 20px;
     padding: 10px;
     font-size: 20px;
-    background-color: #3c0057;
+    background-color: #58b85e;
     color: white;
     border-color: white;
     border-radius: 10px;
