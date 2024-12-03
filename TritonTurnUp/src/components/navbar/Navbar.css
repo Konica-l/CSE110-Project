@@ -64,7 +64,6 @@ nav ul .login-button a:hover{
     height: 0.3em;
     background-color: black;
     border-radius: 0.5em;
-
 }
 .menu{
     position: fixed;
@@ -102,4 +101,17 @@ nav ul .login-button a:hover{
 }
 .visible{
     display: inherit;
+}
+/*--------------------turnip logo--------------------*/
+.turnippp a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.turnippp img {
+    height: 60px;
+    cursor: pointer;
+    margin-bottom: -50px;
+    margin-top: -8px;
 }

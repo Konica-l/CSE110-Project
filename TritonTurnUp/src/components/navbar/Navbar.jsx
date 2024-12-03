@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import turnippp from '../../assets/turnippp.png';
 
 const Navbar = ({user, login, logout}) => {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
@@ -38,6 +39,12 @@ const Navbar = ({user, login, logout}) => {
                     <div className={burger_class}></div>
                     <div className={burger_class}></div>
                     <div className={burger_class}></div>
+                </div>
+
+                <div className="turnippp">
+                    <a href="/home" aria-label="Go to home">
+                        <img src={turnippp} alt="Turnip logo" />
+                    </a>
                 </div>
 
                 <div className="search-bar" data-testid="search-exists">
