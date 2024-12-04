@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import './Schedule.css';
 import Day from "./ScheduleDay.jsx";
 import Button from "./UpdateButton.jsx";
@@ -16,13 +16,25 @@ function Schedule() {
 
         <div className="calendar">
             <h1>This Week's Availability</h1>
-            <div className = "calendar_days_container">
+
+            <div className="legend">
+                <div className="legend-item">
+                    <span className="color-box" style={{ backgroundColor: '#eb9aff' }}></span>
+                    <span>Available</span>
+                </div>
+                <div className="legend-item">
+                    <span className="color-box" style={{ backgroundColor: '#36074a', border: '1px solid #ccc' }}></span>
+                    <span>Unavailable</span>
+                </div>
+            </div>
+
+            <div className="calendar_days_container">
                 {daysOfWeek.map((item, index) => (
                     <div key={index}>
                         <h2>{item}</h2>
-                        <Day 
+                        <Day
                             index={index}
-                            setMatrix = {setMatrix}
+                            setMatrix={setMatrix}
                             matrix={matrix}
                         />
                     </div>
@@ -30,10 +42,12 @@ function Schedule() {
             </div>
 
             <Button
-                selectedTimeslotMatrix ={matrix}
-                userSelectedTimes = {userSelectedTimes}
-                setUserSelectedTimes = {setUserSelectedTimes}
+                selectedTimeslotMatrix={matrix}
+                userSelectedTimes={userSelectedTimes}
+                setUserSelectedTimes={setUserSelectedTimes}
             />
+
+
 
 
 
