@@ -5,6 +5,8 @@ import { describe, test, expect } from 'vitest'; // Vitest's describe and expect
 import '@testing-library/jest-dom';
 import App from './App';
 import Profile from "./components/pages/Profile"
+import Search from './components/pages/Search'
+import Calendar from './components/pages/Calendar'
 import Navbar from './components/navbar/Navbar'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { vi } from 'vitest';
@@ -137,5 +139,35 @@ describe("Navbar", () => {
     const loginButton = screen.getByRole('button', { name: /logout/i });
 
     expect(loginButton).toBeInTheDocument();
+  });
+});
+
+describe("Search", () => {
+  test("Displays no events when query doesn't match any titles", () => {
+    render(
+      <MemoryRouter initialEntries={['/search?q=xxxxxx']}>
+        <Search />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(/No events found/)).toBeInTheDocument();
+  });
+});
+
+describe("Calendar", () => {
+  test("Displays the current month and year", () => {
+    // Get the current month and year dynamically
+    const now = new Date();
+    const options: Intl.DateTimeFormatOptions = { month: "long", year: "numeric" };
+    const currentMonthYear = now.toLocaleDateString(undefined, options);
+
+    render(
+      <MemoryRouter>
+        <Calendar/>
+      </MemoryRouter>
+    );
+
+    // Check if the calendar displays the current month and year
+    expect(screen.getByText(currentMonthYear)).toBeInTheDocument();
   });
 });
