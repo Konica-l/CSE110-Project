@@ -49,6 +49,7 @@
     }
 }
 .carousel-card-buttons button{
+    position: relative;
     padding-top: 4px;
     margin-inline: 4px;
     width: 110px;
@@ -63,4 +64,29 @@
 .carousel-card-buttons button:hover{
     cursor: pointer;
     background-color: #e2c6e2;
+}
+
+/* Tooltip styling */
+.carousel-card-buttons button::after {
+    content: attr(data-tooltip); /* Tooltip content from data-tooltip attribute */
+    position: absolute;
+    top: 130%; /* Position tooltip above button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    color: black;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+}
+
+/* Show tooltip on hover */
+.carousel-card-buttons button:hover::after {
+    opacity: 1;
+    visibility: visible;
 }

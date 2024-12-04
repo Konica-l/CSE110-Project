@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import turnippp from '../../assets/turnippp.png';
 
 const Navbar = ({user, login, logout}) => {
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
@@ -34,10 +35,16 @@ const Navbar = ({user, login, logout}) => {
     return (
         <>
             <nav>
-                <div className="burger-menu" data-testid="open-menu" onClick={updateMenu}>
-                    <div className={burger_class}></div>
-                    <div className={burger_class}></div>
-                    <div className={burger_class}></div>
+                <div className='left-section'>
+                    <div className="burger-menu" data-testid="open-menu" onClick={updateMenu}>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg" alt='drop down menu'></img>
+                    </div>
+
+                    <div className="turnippp">
+                        <a href="/home" aria-label="Go to home">
+                            <img src={turnippp} alt="Turnip logo" />
+                        </a>
+                    </div>
                 </div>
 
                 <div className="search-bar" data-testid="search-exists">
@@ -50,13 +57,13 @@ const Navbar = ({user, login, logout}) => {
                     />
                 </div>
 
-                <ul>
+                <div className='right-section'>
                     {user ? (
                         <button className="login-logout-button" onClick={logout}>Logout</button>
                     ) : (
                         <button className="login-logout-button" onClick={login}>Login</button>
                     )}
-                </ul>
+                </div>
             </nav>
 
             <div className={menu_class}>

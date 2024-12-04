@@ -9,6 +9,11 @@ nav{
     justify-content: space-between;
     padding: 1em;
 }
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 1em; /* Add space between items */
+}
 nav .search-bar input{
     float: center;
     border: none;
@@ -19,15 +24,8 @@ nav .search-bar input{
     width: 40vw;
     z-index: 1000;
 }
-nav ul{
-    display: flex;
-    z-index: 1000;
-}
-nav ul li{
-    list-style: none;
-    z-index: 1000;
-}
 .login-logout-button {
+    font-size: 16px;
     text-decoration: none;
     background-color: #efe8ef;
     border-style: solid;
@@ -42,29 +40,15 @@ nav ul li{
     background-color: #e2c6e2;
     cursor: pointer;
 }
-nav ul li a{
-    display: block;
-    text-decoration: none;
-}
-nav ul .login-button a:hover{
-    background-color: #e2c6e2;
-}
+
 /*--------------------burger menu--------------------*/
 .burger-menu{
-    padding: 5px;
-    width: 2.8em;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
     cursor: pointer;
-}
-.burger-bar{
-    width: 2.5em;
-    height: 0.3em;
-    background-color: black;
-    border-radius: 0.5em;
-
+    img{
+        height: 40px;
+        margin-top: -7px;
+        margin-bottom: -10px;
+    }
 }
 .menu{
     position: fixed;
@@ -102,4 +86,12 @@ nav ul .login-button a:hover{
 }
 .visible{
     display: inherit;
+}
+/*--------------------turnip logo--------------------*/
+
+.turnippp img {
+    height: 60px;
+    cursor: pointer;
+    margin-top: -14px;
+    margin-bottom: -20px;
 }
