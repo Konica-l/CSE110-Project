@@ -40,10 +40,10 @@ dayjs.extend(timezone)
     }
     return timeArr;
   }
+
 const localizer = dayjsLocalizer(dayjs)
 
 export default function Dayjs({ ...props }) {
-
   const [events, setEvents] = useState([]); // State to hold fetched events
   const [user, setUser] = useState(null);  // State for user data
 
@@ -115,10 +115,7 @@ export default function Dayjs({ ...props }) {
   }
 
   const handleSelectEvent = useCallback(
-    (event) => window.alert(['Start: ', event.start, '\n',
-                             'End: ', event.end 
-                            ], event.end),
-    []
+    (event) => window.open(`/event?id=${event.id}`)
   )
 
   //set calendar elements
