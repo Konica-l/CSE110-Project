@@ -80,7 +80,9 @@ function Event(props){
         <p className='carousel-card-preview'>{props.text}</p>
         <div className='carousel-card-buttons'>
           <button onClick={() => props.notInterested()}><img src={rejectImage} alt='Reject'/></button>
-          <button><img src={linkImage} alt='More'/></button>
+          <a key={props.id} href={`event?id=${props.id}`} className="mid-button">
+            <button><img src={linkImage} alt='More'/></button>
+          </a>
           <button onClick={() => handleAddEvent()}><img src={acceptImage} alt='Accept'/></button>
         </div>
       </div>
