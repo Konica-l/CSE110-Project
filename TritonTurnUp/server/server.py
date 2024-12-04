@@ -275,8 +275,6 @@ def get_subscribed_events(customer_id):
 
     subscribed_events = customer['subscribed_events'].split(',') if customer['subscribed_events'] else []
 
-    if not subscribed_events:
-        return jsonify({}), 200
 
     placeholders = ','.join('?' for _ in subscribed_events)
     query = f"SELECT id, title, image_url, preview, date_time, tags FROM events WHERE id IN ({placeholders}) ORDER BY start_date"
